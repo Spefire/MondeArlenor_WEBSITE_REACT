@@ -16,11 +16,7 @@ class Header extends Component {
     return (
       <header>
         <div>
-          <HeaderButton
-            isActivated
-            textContent="CASSINI"
-            link="/"
-          />
+          <HeaderButton isActivated textContent="CASSINI" link="/" />
         </div>
         <nav>
           <HeaderButton
@@ -41,10 +37,8 @@ class Header extends Component {
 
 const mapStateToProps = state => {
   return {
-      currentLocation: state.currentLocation
+    currentLocation: state.currentLocation
   };
 };
 
-export default connect(
-  mapStateToProps
-)(Header)
+export default connect(mapStateToProps)(Header);

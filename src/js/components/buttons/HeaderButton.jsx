@@ -7,7 +7,7 @@ import "./HeaderButton.scss";
 
 class HeaderButton extends Component {
   render() {
-    const { textContent, link, isActivated } = this.props;
+    const { isActivated, link, textContent } = this.props;
 
     return (
       <Fragment>

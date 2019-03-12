@@ -1,17 +1,19 @@
-//Gestion des imports bibliothèques
+//Imports bibliothèques
 import React, { Component, Fragment } from "react";
 
-//Gestion des imports des composants
+//Imports des composants
 import Text from "../../components/text/Text.jsx";
 
-//Gestion du redux
+//Imports de redux
 import { connect } from "react-redux";
 import { changeLocation } from "../../redux/actions.js";
 
-//Gestion des styles
+//Imports des styles
 import "./HomeContainer.scss";
 
-//Déclaration du composant principal
+//------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------
+
 class HomeContainer extends Component {
   constructor(props) {
     super(props);
@@ -23,9 +25,6 @@ class HomeContainer extends Component {
     this.props.changeLocation(currentLocation);
   }
 
-  //------------------------------------------------------------------------------------------------------------------
-  //------------------------------------------------------------------------------------------------------------------
-
   render() {
     return (
       <Fragment>
@@ -34,6 +33,9 @@ class HomeContainer extends Component {
     );
   }
 }
+
+//------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------
 
 const mapDispatchToProps = dispatch => {
   return {
