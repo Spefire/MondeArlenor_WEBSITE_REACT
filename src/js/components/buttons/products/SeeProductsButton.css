@@ -1,0 +1,25 @@
+.seeProductsButton {
+    height: 40px;
+    width: 200px;
+    color: white;
+    background-color: #FF6600;
+    border: 1px solid #FF6600;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.seeProductsButton.disabled {
+    background-color: #666666;
+    border: 1px solid #666666;
+}
+
+.seeProductsImage{
+    height: 20px;
+}
+
+.seeProductsText{
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: bold;
+    padding: 0 0 0 10px;
+}

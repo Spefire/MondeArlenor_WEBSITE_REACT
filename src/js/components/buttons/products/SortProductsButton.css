@@ -1,0 +1,11 @@
+.sortProductsButton {
+    cursor: pointer;
+    height: 40px;
+    background-color: #0066FF;
+    border: 1px solid #0066FF;
+    border-radius: 8px;
+}
+
+.sortProductsImage{
+    height: 20px;
+}
