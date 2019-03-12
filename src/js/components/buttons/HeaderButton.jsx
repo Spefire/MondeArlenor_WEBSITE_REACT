@@ -3,7 +3,7 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 
 //Gestion des styles
-import "./HeaderButton.css";
+import "./HeaderButton.scss";
 
 class HeaderButton extends Component {
   render() {

@@ -7,7 +7,7 @@ import Header from "./components/header/Header.jsx";
 import HomeContainer from "./views/home/HomeContainer.jsx";
 
 //Gestion des styles
-import "../style/index.css";
+import "../index.scss";
 
 //Déclaration du composant principal
 class App extends Component {

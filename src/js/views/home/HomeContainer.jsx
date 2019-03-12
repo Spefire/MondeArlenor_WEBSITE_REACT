@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import { changeLocation } from "../../redux/actions.js";
 
 //Gestion des styles
-import "./HomeContainer.css";
+import "./HomeContainer.scss";
 
 //Déclaration du composant principal
 class HomeContainer extends Component {

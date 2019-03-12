@@ -8,7 +8,7 @@ import HeaderButton from "../buttons/HeaderButton.jsx";
 import { connect } from "react-redux";
 
 //Gestion des styles
-import "./Header.css";
+import "./Header.scss";
 
 class Header extends Component {
   render() {
