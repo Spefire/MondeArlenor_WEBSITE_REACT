@@ -1,7 +1,5 @@
 const initialState = {
-    currentLocation: "/",
-    currentSeeCartMode: false,
-    currentProductsSortMode: "ASC"
+    currentLocation: "/"
 };
 
 const reducer = (state = initialState, action) => {
@@ -9,12 +7,6 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case "CHANGE_LOCATION":
             newState.currentLocation = action.location;
-            break;
-        case "SEE_CART_MODE":
-            newState.currentSeeCartMode = action.seeCartMode;
-            break;
-        case "CHANGE_PRODUCTS_SORTMODE":
-            newState.currentProductsSortMode = action.productsSortMode;
             break;
         default:
             return state;

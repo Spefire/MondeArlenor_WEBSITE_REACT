@@ -1,9 +1,4 @@
-header{
-    /*background: #EEEE55;*/
+header {
     padding: 15px;
-}
-
-.headerImage{
-    margin: 10px 0 20px 0;
-    width: 85%;
+    background: #3d3bf3;
 }

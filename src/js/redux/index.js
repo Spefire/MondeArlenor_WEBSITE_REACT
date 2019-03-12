@@ -1,4 +1,3 @@
-//Gestion des imports bibliothèques
 import { createStore } from 'redux'
 import reducers from './reducers.js'
 

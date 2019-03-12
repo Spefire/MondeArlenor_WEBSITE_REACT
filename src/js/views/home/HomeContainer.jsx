@@ -1,54 +1,47 @@
 //Gestion des imports bibliothèques
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment } from "react";
 
 //Gestion des imports des composants
-import Text from '../../components/text/Text.jsx'
-import Space from '../../components/Space.jsx'
+import Text from "../../components/text/Text.jsx";
 
 //Gestion du redux
-import { connect } from 'react-redux'
-import { changeLocation } from '../../redux/actions.js';
+import { connect } from "react-redux";
+import { changeLocation } from "../../redux/actions.js";
 
 //Gestion des styles
-import './HomeContainer.css'
+import "./HomeContainer.css";
 
 //Déclaration du composant principal
 class HomeContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: "Home"
+    };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            questions : []
-        }
+    var currentLocation = this.props.location.pathname;
+    this.props.changeLocation(currentLocation);
+  }
 
-        var currentLocation = this.props.location.pathname;
-        this.props.changeLocation(currentLocation);
-    }
+  //------------------------------------------------------------------------------------------------------------------
+  //------------------------------------------------------------------------------------------------------------------
 
-    //------------------------------------------------------------------------------------------------------------------
-    //------------------------------------------------------------------------------------------------------------------
-    //------------------------------------------------------------------------------------------------------------------
-
-    render() {
-        //const questions = this.state.questions;
-        return (
-            <Fragment>
-                <Text textContent="ACCUEIL" fontSize="25" isBold/>
-                <Space height="20"/>
-                <div className="sub-section-row">
-                </div>
-            </Fragment>
-        )
-    }
+  render() {
+    return (
+      <Fragment>
+        <Text textContent={this.props.location.pathname} fontSize="25" isBold />
+      </Fragment>
+    );
+  }
 }
 
 const mapDispatchToProps = dispatch => {
-    return {
-        changeLocation: location => dispatch(changeLocation(location))
-    };
+  return {
+    changeLocation: location => dispatch(changeLocation(location))
+  };
 };
 
 export default connect(
-    null,
-    mapDispatchToProps
-)(HomeContainer)
+  null,
+  mapDispatchToProps
+)(HomeContainer);
