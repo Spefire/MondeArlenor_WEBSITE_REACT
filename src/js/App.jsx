@@ -4,8 +4,8 @@ import { Switch, Route } from "react-router-dom";
 
 //Gestion des imports des composants
 import Header from "./components/header/Header.jsx";
-import ConnexionLogin from "./views/connexion/connexion-login/ConnexionLogin.jsx";
-import ConnexionSignUp from "./views/connexion/connexion-signup/ConnexionSignUp.jsx";
+import ConnexionLogin from "./views/connexion/ConnexionLogin.jsx";
+import ConnexionSignUp from "./views/connexion/ConnexionSignUp.jsx";
 import HomeContainer from "./views/home/HomeContainer.jsx";
 import OffersContainer from "./views/offers/OffersContainer.jsx";
 import ProfileContainer from "./views/profile/ProfileContainer.jsx";

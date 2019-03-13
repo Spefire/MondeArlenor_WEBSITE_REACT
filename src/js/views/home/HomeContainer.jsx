@@ -3,11 +3,11 @@ import React, { Component, Fragment } from "react";
 
 //Imports des composants
 import Text from "../../components/text/Text.jsx";
-import HomeVisit from './home-visit/HomeVisit';
-import HomeSingleAnnounce from './home-single-announce/HomeSingleAnnounce';
-import HomeParcours from './home-parcours/HomeParcours';
-import HomeOffer from './home-offer/HomeOffer';
-import HomeListAnnounces from "./home-list-announces/HomeListAnnounces.jsx";
+import HomeVisit from './home-modules/HomeVisit';
+import HomeSingleAnnounce from './home-modules/HomeSingleAnnounce';
+import HomeParcours from './home-modules/HomeParcours';
+import HomeOffer from './home-modules/HomeOffer';
+import HomeListAnnounces from "./home-modules/HomeListAnnounces.jsx";
 
 //Imports de redux
 import { connect } from "react-redux";

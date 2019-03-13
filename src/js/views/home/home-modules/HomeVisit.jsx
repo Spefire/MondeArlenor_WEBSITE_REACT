@@ -4,9 +4,6 @@ import React, { Component, Fragment } from "react";
 //Imports des composants
 import Text from "../../../components/text/Text.jsx";
 
-//Imports des styles
-import "./HomeVisit.scss";
-
 //------------------------------------------------------------------------------------------------------------------
 // https://projects.invisionapp.com/d/main/default/#/console/15371446/344980962/preview
 //------------------------------------------------------------------------------------------------------------------

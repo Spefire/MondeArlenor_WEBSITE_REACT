@@ -2,27 +2,31 @@
 import React, { Component, Fragment } from "react";
 
 //Imports des composants
-import Text from "../../../components/text/Text.jsx";
+import Text from "../../components/text/Text.jsx";
+
+//Imports de redux
+import { connect } from "react-redux";
+import { changeLocation } from "../../redux/actions.js";
 
 //Imports des styles
-import "./HomeSingleAnnounce.scss";
+import "./Connexion.scss";
 
 //------------------------------------------------------------------------------------------------------------------
-// https://projects.invisionapp.com/d/main/default/#/console/15371446/330964835/preview
+// https://projects.invisionapp.com/d/main/default/#/console/15371446/332675601/preview
 //------------------------------------------------------------------------------------------------------------------
 
-class HomeSingleAnnounce extends Component {
+class ConnexionLogin extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      title: "HomeSingleAnnounce"
-    };
+
+    var currentLocation = this.props.location.pathname;
+    this.props.changeLocation(currentLocation);
   }
 
   render() {
     return (
       <Fragment>
-        <Text textContent={this.state.title} fontSize="25" isBold />
+        <Text textContent={this.props.location.pathname} fontSize="25" isBold />
       </Fragment>
     );
   }
@@ -31,4 +35,13 @@ class HomeSingleAnnounce extends Component {
 //------------------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------------
 
-export default HomeSingleAnnounce;
+const mapDispatchToProps = dispatch => {
+  return {
+    changeLocation: location => dispatch(changeLocation(location))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(ConnexionLogin);

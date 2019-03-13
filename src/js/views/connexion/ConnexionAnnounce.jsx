@@ -2,27 +2,31 @@
 import React, { Component, Fragment } from "react";
 
 //Imports des composants
-import Text from "../../../components/text/Text.jsx";
+import Text from "../../components/text/Text.jsx";
+
+//Imports de redux
+import { connect } from "react-redux";
+import { changeLocation } from "../../redux/actions.js";
 
 //Imports des styles
-import "./HomeParcours.scss";
+import "./Connexion.scss";
 
 //------------------------------------------------------------------------------------------------------------------
-// https://projects.invisionapp.com/d/main/default/#/console/15371446/329517548/preview
+// https://projects.invisionapp.com/d/main/default/#/console/15371446/335550271/preview
 //------------------------------------------------------------------------------------------------------------------
 
-class HomeParcours extends Component {
+class ConnexionAnnounce extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      title: "HomeParcours"
-    };
+
+    var currentLocation = this.props.location.pathname;
+    this.props.changeLocation(currentLocation);
   }
 
   render() {
     return (
       <Fragment>
-        <Text textContent={this.state.title} fontSize="25" isBold />
+        <Text textContent={this.props.location.pathname} fontSize="25" isBold />
       </Fragment>
     );
   }
@@ -31,4 +35,13 @@ class HomeParcours extends Component {
 //------------------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------------
 
-export default HomeParcours;
+const mapDispatchToProps = dispatch => {
+  return {
+    changeLocation: location => dispatch(changeLocation(location))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(ConnexionAnnounce);
