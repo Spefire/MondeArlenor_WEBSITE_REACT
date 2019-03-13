@@ -2,11 +2,11 @@
 import React, { Component, Fragment } from "react";
 
 //Imports des composants
-import Text from "../../components/text/Text.jsx";
+import Text from "../../../components/text/Text.jsx";
 
 //Imports de redux
 import { connect } from "react-redux";
-import { changeLocation } from "../../redux/actions.js";
+import { changeLocation } from "../../../redux/actions.js";
 
 //Imports des styles
 import "./ConnexionAnnounce.scss";

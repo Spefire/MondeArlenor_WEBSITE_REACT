@@ -29,6 +29,11 @@ class Header extends Component {
             textContent="Mes offres"
             link="/offers"
           />
+          <HeaderButton
+            isActivated={currentLocation === "/profile"}
+            textContent="Zachary Franc"
+            link="/profile"
+          />
         </nav>
       </header>
     );
