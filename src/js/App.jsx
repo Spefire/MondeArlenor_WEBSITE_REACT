@@ -15,15 +15,6 @@ import "../index.scss";
 
 //Déclaration du composant principal
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: {
-        firstName: "Nicholas",
-        lastName: "BRUN"
-      }
-    };
-  }
 
   render() {
     return (
