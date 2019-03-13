@@ -20,9 +20,9 @@ class Header extends Component {
         </div>
         <nav>
           <HeaderButton
-            isActivated={currentLocation === "/selection"}
+            isActivated={currentLocation === "/"}
             textContent="Ma sélection"
-            link="/selection"
+            link="/"
           />
           <HeaderButton
             isActivated={currentLocation === "/offers"}

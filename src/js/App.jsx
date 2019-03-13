@@ -5,6 +5,7 @@ import { Switch, Route } from "react-router-dom";
 //Gestion des imports des composants
 import Header from "./components/header/Header.jsx";
 import HomeContainer from "./views/home/HomeContainer.jsx";
+import OffersContainer from "./views/offers/OffersContainer.jsx";
 
 //Gestion des styles
 import "../index.scss";
@@ -31,8 +32,7 @@ class App extends Component {
           <main>
             <Switch>
               <Route exact path="/" component={HomeContainer} />
-              <Route path="/selection" component={HomeContainer} />
-              <Route path="/offers" component={HomeContainer} />
+              <Route path="/offers" component={OffersContainer} />
             </Switch>
           </main>
         </div>
