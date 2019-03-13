@@ -4,7 +4,8 @@ import { Switch, Route } from "react-router-dom";
 
 //Gestion des imports des composants
 import Header from "./components/header/Header.jsx";
-import ConnexionDirect from "./views/connexion/connexion-direct/ConnexionDirect.jsx";
+import ConnexionLogin from "./views/connexion/connexion-login/ConnexionLogin.jsx";
+import ConnexionSignUp from "./views/connexion/connexion-signup/ConnexionSignUp.jsx";
 import HomeContainer from "./views/home/HomeContainer.jsx";
 import OffersContainer from "./views/offers/OffersContainer.jsx";
 import ProfileContainer from "./views/profile/ProfileContainer.jsx";
@@ -33,7 +34,8 @@ class App extends Component {
           </div>
           <main>
             <Switch>
-              <Route path="/login" component={ConnexionDirect} />
+              <Route path="/login" component={ConnexionLogin} />
+              <Route path="/signup" component={ConnexionSignUp} />
               <Route exact path="/" component={HomeContainer} />
               <Route path="/offers" component={OffersContainer} />
               <Route path="/profile" component={ProfileContainer} />

@@ -12,6 +12,7 @@ import { changeLocation } from "../../redux/actions.js";
 import "./OffersContainer.scss";
 
 //------------------------------------------------------------------------------------------------------------------
+// https://projects.invisionapp.com/d/main/default/#/console/15371446/332675589/preview
 //------------------------------------------------------------------------------------------------------------------
 
 class OffersContainer extends Component {

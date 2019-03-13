@@ -8,6 +8,7 @@ import Text from "../../../components/text/Text.jsx";
 import "./HomeOffer.scss";
 
 //------------------------------------------------------------------------------------------------------------------
+// https://projects.invisionapp.com/d/main/default/#/console/15371446/332675598/preview
 //------------------------------------------------------------------------------------------------------------------
 
 class HomeOffer extends Component {

@@ -9,12 +9,13 @@ import { connect } from "react-redux";
 import { changeLocation } from "../../../redux/actions.js";
 
 //Imports des styles
-import "./ConnexionDirect.scss";
+import "./ConnexionLogin.scss";
 
 //------------------------------------------------------------------------------------------------------------------
+// https://projects.invisionapp.com/d/main/default/#/console/15371446/332675601/preview
 //------------------------------------------------------------------------------------------------------------------
 
-class ConnexionDirect extends Component {
+class ConnexionLogin extends Component {
   constructor(props) {
     super(props);
 
@@ -43,4 +44,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   null,
   mapDispatchToProps
-)(ConnexionDirect);
+)(ConnexionLogin);

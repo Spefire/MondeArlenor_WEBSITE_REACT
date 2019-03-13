@@ -8,6 +8,7 @@ import Text from "../../../components/text/Text.jsx";
 import "./HomeSingleAnnounce.scss";
 
 //------------------------------------------------------------------------------------------------------------------
+// https://projects.invisionapp.com/d/main/default/#/console/15371446/330964835/preview
 //------------------------------------------------------------------------------------------------------------------
 
 class HomeSingleAnnounce extends Component {

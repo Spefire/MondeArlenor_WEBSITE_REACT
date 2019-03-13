@@ -12,6 +12,7 @@ import { changeLocation } from "../../../redux/actions.js";
 import "./ConnexionAnnounce.scss";
 
 //------------------------------------------------------------------------------------------------------------------
+// https://projects.invisionapp.com/d/main/default/#/console/15371446/335550271/preview
 //------------------------------------------------------------------------------------------------------------------
 
 class ConnexionAnnounce extends Component {

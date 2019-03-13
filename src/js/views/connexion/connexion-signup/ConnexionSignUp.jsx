@@ -9,12 +9,13 @@ import { connect } from "react-redux";
 import { changeLocation } from "../../../redux/actions.js";
 
 //Imports des styles
-import "./ConnexionMail.scss";
+import "./ConnexionSignUp.scss";
 
 //------------------------------------------------------------------------------------------------------------------
+// https://projects.invisionapp.com/d/main/default/#/console/15371446/332675600/preview
 //------------------------------------------------------------------------------------------------------------------
 
-class ConnexionMail extends Component {
+class ConnexionSignUp extends Component {
   constructor(props) {
     super(props);
 
@@ -43,4 +44,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   null,
   mapDispatchToProps
-)(ConnexionMail);
+)(ConnexionSignUp);
