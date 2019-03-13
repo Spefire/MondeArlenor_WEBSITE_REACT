@@ -28,7 +28,7 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <div style={{margin : "0 10%"}}>
+        <div>
           <div>
             <Header user={this.state.user} />
           </div>
