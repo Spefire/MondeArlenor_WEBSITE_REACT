@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 html {
   height: 100%;
   width: 100%;
@@ -18,4 +20,9 @@ button {
 
 button:disabled {
   cursor: auto;
+}
+
+a {
+  color: $light-color;
+  text-decoration: none;
 }

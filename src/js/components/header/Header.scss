@@ -1,6 +1,41 @@
 @import "../../../styles/variables.scss";
 
 header {
-  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  height: 250px;
   background: $primary-color;
+}
+
+nav {
+  display: flex;
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  background-color: $light-color;
+
+  * {
+    padding: 12px;
+    text-align: center;
+    color: $dark-color;;
+    cursor: pointer;
+  }
+}
+
+.navButton {
+  padding: 20px;
+  opacity: 0.6;
+
+  span {
+    color: $light-color;
+    cursor: pointer;
+  }
+
+  &.activated {
+    font-weight: bold;
+    opacity: 1;
+  }
 }
