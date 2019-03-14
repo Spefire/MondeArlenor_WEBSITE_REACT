@@ -1,17 +1,29 @@
 @import "../../../styles/variables.scss";
 
 header {
-  display: flex;
-  justify-content: space-between;
-  height: 250px;
+  height: 200px;
   background: $primary-color;
+}
+
+.headTitle {
+  font-size: 22px;
 }
 
 nav {
   display: flex;
 }
 
+.navSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  margin: 0 30px;
+  border-bottom: 2px solid rgba(#2b2aac, 0.3);
+}
+
 .navList {
+  position: absolute;
   display: flex;
   flex-direction: column;
   border-radius: 4px;
