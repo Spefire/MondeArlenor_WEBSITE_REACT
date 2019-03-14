@@ -2,20 +2,17 @@
 import React, { Component, Fragment } from "react";
 
 //Imports des composants
-import Text from "../../components/text/Text.jsx";
+import Text from "../../../components/text/Text.jsx";
 
 //Imports de redux
 import { connect } from "react-redux";
-import { changeLocation } from "../../redux/actions.js";
-
-//Imports des styles
-import "./Connexion.scss";
+import { changeLocation } from "../../../redux/actions.js";
 
 //------------------------------------------------------------------------------------------------------------------
-// https://projects.invisionapp.com/d/main/default/#/console/15371446/332675600/preview
+// https://projects.invisionapp.com/d/main/default/#/console/15371446/335550271/preview
 //------------------------------------------------------------------------------------------------------------------
 
-class ConnexionSignUp extends Component {
+class ConnexionAnnounce extends Component {
   constructor(props) {
     super(props);
 
@@ -44,4 +41,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   null,
   mapDispatchToProps
-)(ConnexionSignUp);
+)(ConnexionAnnounce);
