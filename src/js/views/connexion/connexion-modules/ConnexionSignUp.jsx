@@ -1,5 +1,5 @@
 //Imports bibliothèques
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from 'react-router-dom';
 
 //Gestion des imports des images
@@ -18,18 +18,25 @@ class ConnexionSignUp extends Component {
     super(props);
     this.state = {
       alertEmail: "",
+      alertFirstName: "",
+      alertLastName: "",
       alertPassword: "",
       alertPasswordConfirmed: "",
+      alertPhoneNumber: "",
       email: "",
+      firstName: "",
+      lastName: "",
+      nextStep: false,
       password: "",
-      passwordConfirmed: ""
+      passwordConfirmed: "",
+      phoneNumber: ""
     }
 
     var currentLocation = this.props.location.pathname;
     this.props.changeLocation(currentLocation);
   }
 
-  checkSignUp = () => {
+  checkFirstStep = () => {
     var alertEmail, alertPassword, alertPasswordConfirmed;
     const { email, password, passwordConfirmed } = this.state;
 
@@ -40,7 +47,7 @@ class ConnexionSignUp extends Component {
       alertEmail = "Veuillez saisir un email valide.";
     }
 
-    var regexPassword = /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/;
+    var regexPassword = /^(?=.*[0-9])(?=.*[-!$%^&*()_+|~=`{}[\]:";'<>?,./])(?=.{8,})/;
     if (password === "") {
       alertPassword = "Veuillez saisir votre mot de passe.";
     } else if (!regexPassword.test(password)) {
@@ -53,44 +60,94 @@ class ConnexionSignUp extends Component {
       alertPasswordConfirmed = "Veuillez saisir des mots de passe identiques.";
     }
 
-    this.setState({ alertEmail: alertEmail, alertPassword: alertPassword, alertPasswordConfirmed: alertPasswordConfirmed });
+    this.setState({
+      alertEmail: alertEmail,
+      alertPassword: alertPassword,
+      alertPasswordConfirmed: alertPasswordConfirmed,
+      nextStep: (!alertEmail && !alertPassword && !alertPasswordConfirmed)
+    });
   }
 
-  changeEmail = (value) => {
-    this.setState({ email: value });
+  checkLastStep = () => {
+    var alertFirstName, alertLastName, alertPhoneNumber;
+    const { firstName, lastName, phoneNumber } = this.state;
+
+    if (firstName === "") {
+      alertFirstName = "Veuillez saisir votre prénom.";
+    }
+
+    if (lastName === "") {
+      alertLastName = "Veuillez saisir votre nom.";
+    }
+
+    var regexPhone = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
+    if (phoneNumber === "") {
+      alertPhoneNumber = "Veuillez saisir votre numéro de téléphone.";
+    } else if (!regexPhone.test(phoneNumber)) {
+      alertPhoneNumber = "Veuillez saisir un numéro de téléphone valide.";
+    }
+
+    this.setState({
+      alertFirstName: alertFirstName,
+      alertLastName: alertLastName,
+      alertPhoneNumber: alertPhoneNumber
+    });
   }
 
-  changePassword = (value) => {
-    this.setState({ password: value });
+  changeEmail = (event) => {
+    this.setState({ email: event.target.value });
   }
 
-  changePasswordConfirmed = (value) => {
-    this.setState({ passwordConfirmed: value });
+  changeFirstName = (event) => {
+    this.setState({ firstName: event.target.value });
   }
 
-  render() {
-    const { alertEmail, alertPassword, alertPasswordConfirmed } = this.state;
+  changeLastName = (event) => {
+    this.setState({ lastName: event.target.value });
+  }
+
+  changePassword = (event) => {
+    this.setState({ password: event.target.value });
+  }
+
+  changePasswordConfirmed = (event) => {
+    this.setState({ passwordConfirmed: event.target.value });
+  }
+
+  changePhoneNumber = (event) => {
+    this.setState({ phoneNumber: event.target.value });
+  }
+
+  renderFirstStep = () => {
+    const {
+      alertEmail,
+      alertPassword,
+      alertPasswordConfirmed,
+      email,
+      password,
+      passwordConfirmed
+    } = this.state;
 
     return (
-      <div className="container">
+      <Fragment>
         <div className="section">
           <div className="section-title right">
             <h2>Bienvenue dans<br></br>votre espace </h2><h2 className="title">Cassini</h2>
           </div>
-          <form>
-            <input type="email" placeholder="Adresse email" onChange={this.changeEmail}/>
+          <div>
+            <input value={email} type="email" placeholder="Adresse email" onChange={this.changeEmail}/>
             <span>{alertEmail}</span>
-            <input type="password" placeholder="Mot de passe" onChange={this.changePassword}/>
+            <input value={password} type="text" placeholder="Mot de passe" onChange={this.changePassword}/>
             <span>{alertPassword}</span>
-            <input type="password" placeholder="Confirmez votre mot de passe" onChange={this.changePasswordConfirmed}/>
+            <input value={passwordConfirmed} type="text" placeholder="Confirmez votre mot de passe" onChange={this.changePasswordConfirmed}/>
             <span>{alertPasswordConfirmed}</span>
-          </form>
+          </div>
           <Link className="link" to={"/login"}>Vous avez déjà un compte ?</Link>
-          <button onClick={this.checkSignUp}>S'inscrire</button>
+          <button onClick={this.checkFirstStep}>S'inscrire</button>
         </div>
         <div className="section">
           <div className="section-title left">
-            <h2>Pourquoi créer un compte ?</h2>
+            <h2>Pourquoi<br></br>créer un compte ?</h2>
           </div>
           <div className="section-point">
             <div className="point">1</div>
@@ -113,8 +170,56 @@ class ConnexionSignUp extends Component {
             Sorry, your browser doesn't support embedded videos.
           </video>
         </div>
-      </div>
+      </Fragment>
     );
+  }
+
+  renderLastStep = () => {
+    const {
+      alertFirstName,
+      alertLastName,
+      alertPhoneNumber,
+      firstName,
+      lastName,
+      phoneNumber
+    } = this.state;
+
+    return (
+      <Fragment>
+        <div className="section">
+          <div className="section-title right">
+            <h2>Informations complémentaires<br></br>Quelques informations pour mieux vous connaître</h2>
+          </div>
+          <div>
+            <input value={firstName} type="text" placeholder="Prénom" onChange={this.changeFirstName}/>
+            <span>{alertFirstName}</span>
+            <input value={lastName} type="text" placeholder="Nom" onChange={this.changeLastName}/>
+            <span>{alertLastName}</span>
+            <input value={phoneNumber} type="text" placeholder="Numéro de téléphone" onChange={this.changePhoneNumber}/>
+            <span>{alertPhoneNumber}</span>
+          </div>
+          <button onClick={this.checkLastStep}>Valider</button>
+        </div>
+        <div className="section">
+          <div className="section-title left">
+            <h2>Pourquoi vous demander ces informations ?</h2>
+          </div>
+          <div className="section-point">
+            <span>Ces informations ne seront utilisées qu’en cas de visite ou de constitution d’un dossier. Si vous n’êtes pas encore décidé, vous pouvez passer cette étape, nous verrons ça plus tard.</span>
+          </div>
+        </div>
+      </Fragment>
+    );
+  }
+
+  render() {
+    const { nextStep } = this.state;
+
+    return (
+      <div className="container">
+        { nextStep ? this.renderLastStep() : this.renderFirstStep() }
+      </div>
+    )
   }
 }
 

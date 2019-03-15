@@ -62,7 +62,7 @@ class ConnexionLogin extends Component {
       <div className="container">
         <div className="section">
           <div className="section-title right">
-            <h2>Connectez vous à<br></br> votre espace </h2><h2 className="title">Cassini</h2>
+            <h2>Connectez vous à<br></br>votre espace </h2><h2 className="title">Cassini</h2>
           </div>
           <form>
             <input type="email" placeholder="Adresse email" onChange={this.changeEmail}/>
@@ -76,7 +76,7 @@ class ConnexionLogin extends Component {
         </div>
         <div className="section">
           <div className="section-title left">
-            <h2>Pourquoi créer un compte ?</h2>
+            <h2>Pourquoi<br></br>créer un compte ?</h2>
           </div>
           <div className="section-point">
             <div className="point">1</div>
