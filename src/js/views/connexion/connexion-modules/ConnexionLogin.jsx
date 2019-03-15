@@ -47,16 +47,21 @@ class ConnexionLogin extends Component {
     this.setState({ alertEmail: alertEmail, alertPassword: alertPassword });
   }
 
-  changeEmail = (value) => {
-    this.setState({ email: value });
+  changeEmail = (event) => {
+    this.setState({ email: event.target.value });
   }
 
-  changePassword = (value) => {
-    this.setState({ password: value });
+  changePassword = (event) => {
+    this.setState({ password: event.target.value });
   }
 
   render() {
-    const { alertEmail, alertPassword } = this.state;
+    const {
+      alertEmail,
+      alertPassword,
+      email,
+      password
+    } = this.state;
 
     return (
       <div className="container">
@@ -64,13 +69,13 @@ class ConnexionLogin extends Component {
           <div className="section-title right">
             <h2>Connectez vous à<br></br>votre espace </h2><h2 className="title">Cassini</h2>
           </div>
-          <form>
-            <input type="email" placeholder="Adresse email" onChange={this.changeEmail}/>
-            <span>{alertEmail}</span>
-            <input type="password" placeholder="Mot de passe" onChange={this.changePassword}/>
-            <span>{alertPassword}</span>
+          <div>
+            <input className={alertEmail ? 'alert' : ''} value={email} type="email" placeholder="Adresse email" onChange={this.changeEmail}/>
+            <span className="alert">{alertEmail}</span>
+            <input className={alertPassword ? 'alert' : ''} value={password} type="password" placeholder="Mot de passe" onChange={this.changePassword}/>
+            <span className="alert">{alertPassword}</span>
             <Link className="link" to={"/forgotpassword"}>Mot de passe oublié ?</Link>
-          </form>
+          </div>
           <Link className="link" to={"/signup"}>Vous n'avez pas encore créé de compte ?</Link>
           <button onClick={this.checkLogin}>Se connecter</button>
         </div>

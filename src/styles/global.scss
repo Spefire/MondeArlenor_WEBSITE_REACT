@@ -50,6 +50,7 @@ input {
   background-color: #ffffff;
 
   &.alert {
+    color: $alert-color;
     border: solid 1px $alert-color;
 
     &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */

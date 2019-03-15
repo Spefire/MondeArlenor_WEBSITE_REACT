@@ -135,12 +135,12 @@ class ConnexionSignUp extends Component {
             <h2>Bienvenue dans<br></br>votre espace </h2><h2 className="title">Cassini</h2>
           </div>
           <div>
-            <input value={email} type="email" placeholder="Adresse email" onChange={this.changeEmail}/>
-            <span>{alertEmail}</span>
-            <input value={password} type="text" placeholder="Mot de passe" onChange={this.changePassword}/>
-            <span>{alertPassword}</span>
-            <input value={passwordConfirmed} type="text" placeholder="Confirmez votre mot de passe" onChange={this.changePasswordConfirmed}/>
-            <span>{alertPasswordConfirmed}</span>
+            <input className={alertEmail ? 'alert' : ''} value={email} type="email" placeholder="Adresse email" onChange={this.changeEmail}/>
+            <span className="alert">{alertEmail}</span>
+            <input className={alertPassword ? 'alert' : ''} value={password} type="password" placeholder="Mot de passe" onChange={this.changePassword}/>
+            <span className="alert">{alertPassword}</span>
+            <input className={alertPasswordConfirmed ? 'alert' : ''} value={passwordConfirmed} type="password" placeholder="Confirmez votre mot de passe" onChange={this.changePasswordConfirmed}/>
+            <span className="alert">{alertPasswordConfirmed}</span>
           </div>
           <Link className="link" to={"/login"}>Vous avez déjà un compte ?</Link>
           <button onClick={this.checkFirstStep}>S'inscrire</button>
@@ -191,12 +191,12 @@ class ConnexionSignUp extends Component {
             <h2>Informations complémentaires<br></br>Quelques informations pour mieux vous connaître</h2>
           </div>
           <div>
-            <input value={firstName} type="text" placeholder="Prénom" onChange={this.changeFirstName}/>
-            <span>{alertFirstName}</span>
-            <input value={lastName} type="text" placeholder="Nom" onChange={this.changeLastName}/>
-            <span>{alertLastName}</span>
-            <input value={phoneNumber} type="text" placeholder="Numéro de téléphone" onChange={this.changePhoneNumber}/>
-            <span>{alertPhoneNumber}</span>
+            <input className={alertFirstName ? 'alert' : ''} value={firstName} type="text" placeholder="Prénom" onChange={this.changeFirstName}/>
+            <span className="alert">{alertFirstName}</span>
+            <input className={alertLastName ? 'alert' : ''} value={lastName} type="text" placeholder="Nom" onChange={this.changeLastName}/>
+            <span className="alert">{alertLastName}</span>
+            <input className={alertPhoneNumber ? 'alert' : ''} value={phoneNumber} type="tel" placeholder="Numéro de téléphone" onChange={this.changePhoneNumber}/>
+            <span className="alert">{alertPhoneNumber}</span>
           </div>
           <button onClick={this.checkLastStep}>Valider</button>
         </div>
