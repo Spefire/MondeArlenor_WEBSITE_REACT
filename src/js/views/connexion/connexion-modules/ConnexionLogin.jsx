@@ -76,8 +76,10 @@ class ConnexionLogin extends Component {
             <span className="alert">{alertPassword}</span>
             <Link className="link" to={"/forgotpassword"}>Mot de passe oublié ?</Link>
           </div>
-          <Link className="link" to={"/signup"}>Vous n'avez pas encore créé de compte ?</Link>
-          <button onClick={this.checkLogin}>Se connecter</button>
+          <div className="section-end">
+            <Link className="link" to={"/signup"}>Vous n'avez pas encore créé de compte ?</Link>
+            <button onClick={this.checkLogin}>Se connecter</button>
+          </div>
         </div>
         <div className="section">
           <div className="section-title left">

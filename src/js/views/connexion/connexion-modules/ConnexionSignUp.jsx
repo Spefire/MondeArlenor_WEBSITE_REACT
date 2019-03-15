@@ -142,8 +142,10 @@ class ConnexionSignUp extends Component {
             <input className={alertPasswordConfirmed ? 'alert' : ''} value={passwordConfirmed} type="password" placeholder="Confirmez votre mot de passe" onChange={this.changePasswordConfirmed}/>
             <span className="alert">{alertPasswordConfirmed}</span>
           </div>
-          <Link className="link" to={"/login"}>Vous avez déjà un compte ?</Link>
-          <button onClick={this.checkFirstStep}>S'inscrire</button>
+          <div className="section-end">
+            <Link className="link" to={"/login"}>Vous avez déjà un compte ?</Link>
+            <button onClick={this.checkFirstStep}>S'inscrire</button>
+          </div>
         </div>
         <div className="section">
           <div className="section-title left">
@@ -198,15 +200,15 @@ class ConnexionSignUp extends Component {
             <input className={alertPhoneNumber ? 'alert' : ''} value={phoneNumber} type="tel" placeholder="Numéro de téléphone" onChange={this.changePhoneNumber}/>
             <span className="alert">{alertPhoneNumber}</span>
           </div>
-          <button onClick={this.checkLastStep}>Valider</button>
+          <div className="section-end end">
+            <button onClick={this.checkLastStep}>Valider</button>
+          </div>
         </div>
         <div className="section">
           <div className="section-title left">
             <h2>Pourquoi vous demander ces informations ?</h2>
           </div>
-          <div className="section-point">
-            <span>Ces informations ne seront utilisées qu’en cas de visite ou de constitution d’un dossier. Si vous n’êtes pas encore décidé, vous pouvez passer cette étape, nous verrons ça plus tard.</span>
-          </div>
+          <p>Ces informations ne seront utilisées qu’en cas de visite ou de constitution d’un dossier. Si vous n’êtes pas encore décidé, vous pouvez passer cette étape, nous verrons ça plus tard.</p>
         </div>
       </Fragment>
     );
