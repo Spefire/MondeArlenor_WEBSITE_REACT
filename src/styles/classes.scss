@@ -1,0 +1,12 @@
+@import "./variables.scss";
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: -100px;
+}
+
+.link {
+  color: $link-color;
+  text-decoration: underline;
+}

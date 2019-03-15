@@ -1,8 +1,9 @@
 //Imports bibliothèques
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 
-//Imports des composants
-import Text from "../../../components/text/Text.jsx";
+//Gestion des imports des images
+import videoLoginSrc from'../../../../assets/videos/video01.webm'
 
 //Imports de redux
 import { connect } from "react-redux";
@@ -15,16 +16,90 @@ import { changeLocation } from "../../../redux/actions.js";
 class ConnexionLogin extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      alertEmail: "",
+      alertPassword: "",
+      email: "",
+      password: ""
+    }
 
     var currentLocation = this.props.location.pathname;
     this.props.changeLocation(currentLocation);
   }
 
+  checkLogin = () => {
+    var alertEmail, alertPassword;
+    const { email, password } = this.state;
+
+    var regexEmail = /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/;
+    if (email === "") {
+      alertEmail = "Veuillez saisir votre email.";
+    } else if (!regexEmail.test(email)) {
+      alertEmail = "Veuillez saisir un email valide.";
+    }/* else if ( email ) {
+      alertEmail = "Votre email n'existe pas, veuillez vous inscrire dans un premier temps.";
+    }*/
+
+    if (password === "") {
+      alertPassword = "Veuillez saisir votre mot de passe.";
+    }
+
+    this.setState({ alertEmail: alertEmail, alertPassword: alertPassword });
+  }
+
+  changeEmail = (value) => {
+    this.setState({ email: value });
+  }
+
+  changePassword = (value) => {
+    this.setState({ password: value });
+  }
+
   render() {
+    const { alertEmail, alertPassword } = this.state;
+
     return (
-      <Fragment>
-        <Text textContent={this.props.location.pathname} fontSize="25" isBold />
-      </Fragment>
+      <div className="container">
+        <div className="section">
+          <div className="section-title right">
+            <h2>Connectez vous à<br></br> votre espace </h2><h2 className="title">Cassini</h2>
+          </div>
+          <form>
+            <input type="email" placeholder="Adresse email" onChange={this.changeEmail}/>
+            <span>{alertEmail}</span>
+            <input type="password" placeholder="Mot de passe" onChange={this.changePassword}/>
+            <span>{alertPassword}</span>
+            <Link className="link" to={"/forgotpassword"}>Mot de passe oublié ?</Link>
+          </form>
+          <Link className="link" to={"/signup"}>Vous n'avez pas encore créé de compte ?</Link>
+          <button onClick={this.checkLogin}>Se connecter</button>
+        </div>
+        <div className="section">
+          <div className="section-title left">
+            <h2>Pourquoi créer un compte ?</h2>
+          </div>
+          <div className="section-point">
+            <div className="point">1</div>
+            <span>Accéder à des annonces immobilières qui vous disent enfin tout (photos supplémentaires , plans 3D, diagnostics, etc.)</span>
+          </div>
+          <div className="section-point">
+            <div className="point">2</div>
+            <span>Organiser vos visites en ligne en quelques clics et visiter des logements en toute autonomie, avec un agent à distance</span>
+          </div>
+          <div className="section-point">
+            <div className="point">3</div>
+            <span>Profiter de l’accompagnement gratuit d’un expert à chaque étape de votre projet</span>
+          </div>
+          <div className="section-point">
+            <div className="point">4</div>
+            <span>Bénéficier de services rigoureusement sélectionnés par Monemprunt.com pour me financer, faire réaliser des travaux, organiser mon déménagement et mes changements d’adresses, etc.</span>
+          </div>
+          <video controls width="250">
+            <source src={videoLoginSrc} type="video/webm"/>
+            Sorry, your browser doesn't support embedded videos.
+          </video>
+        </div>
+      </div>
     );
   }
 }

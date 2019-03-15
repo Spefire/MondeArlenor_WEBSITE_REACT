@@ -6,6 +6,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Header from "./../../components/header/Header.jsx";
 import ConnexionLogin from "./connexion-modules/ConnexionLogin";
 import ConnexionSignUp from "./connexion-modules/ConnexionSignUp";
+import ConnexionForgotPassword from "./connexion-modules/ConnexionForgotPassword";
 
 //Gestion des styles
 import "./Connexion.scss";
@@ -16,7 +17,7 @@ class Connexion extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogged: true
+      isLogged: false
     }
   }
 
@@ -31,6 +32,7 @@ class Connexion extends Component {
             <Switch>
               <Route path="/login" component={ConnexionLogin} />
               <Route path="/signup" component={ConnexionSignUp} />
+              <Route path="/forgotpassword" component={ConnexionForgotPassword} />
             </Switch>
           </main>
         </div>

@@ -18,6 +18,7 @@ ReactDOM.render(
       <Switch>
         <Route exact path='/login' component={Connexion}/>
         <Route exact path='/signup' component={Connexion}/>
+        <Route exact path='/forgotpassword' component={Connexion}/>
         <Route path='/' component={App}/>
       </Switch>
     </BrowserRouter>
