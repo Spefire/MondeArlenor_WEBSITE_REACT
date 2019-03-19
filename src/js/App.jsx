@@ -36,7 +36,7 @@ class App extends Component {
     return (
       <Fragment>
         <div>
-          <Header />
+          <Header isLogged={isLogged}/>
           {!isLogged ? <Redirect to="/login" /> : null}
           <main>
             <Switch>

@@ -37,7 +37,7 @@ class Connexion extends Component {
     return (
       <Fragment>
         <div>
-          <Header />
+          <Header isLogged={isLogged}/>
           { isLogged ? <Redirect to="/"/> : null }
           <main>
             <Switch>

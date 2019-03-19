@@ -2,6 +2,9 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 
+//Gestion des fonctionnalités
+import { logout } from '../../utils/handleConnection.jsx'
+
 //Gestion du redux
 import { connect } from "react-redux";
 
@@ -19,7 +22,7 @@ class Header extends Component {
   }
 
   handleDeconnexion = () => {
-    console.log("DECONNEXION");
+    logout(this.props.currentLocationAPI);
   }
 
   handleNavProfile = (value) => {
@@ -77,7 +80,8 @@ class Header extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentLocation: state.currentLocation
+    currentLocation: state.currentLocation,
+    currentLocationAPI: state.currentLocationAPI
   };
 };
 
