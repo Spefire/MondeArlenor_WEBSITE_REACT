@@ -18,13 +18,24 @@ body {
 
 button {
   height: 40px;
+  width: fit-content;
   padding: 0 20px;
   border-radius: 5px;
   color: $light-color;
   border: none;
-  box-shadow: 0 5px 10px 0 rgba(6, 214, 160, 0.25);
-  background-color: $secondary-color;
+  box-shadow: 0 5px 10px 0 rgba(61, 59, 243, 0.24);
+  background-color: $primary-color;
   cursor: pointer;
+
+  &.alert {
+    box-shadow: 0 5px 10px 0 rgba(239, 71, 111, 0.31);
+    background-color: $alert-color;
+  }
+
+  &.confirmed {
+    box-shadow: 0 5px 10px 0 rgba(6, 214, 160, 0.25);
+    background-color: $secondary-color;
+  }
 }
 
 button:disabled {
@@ -69,6 +80,12 @@ input {
     &::-ms-input-placeholder { /* Microsoft Edge */
       color: $alert-color;
     }
+  }
+}
+
+span {
+  &.alert {
+    color: $alert-color;
   }
 }
 

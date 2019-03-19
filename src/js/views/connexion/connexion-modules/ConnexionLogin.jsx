@@ -71,9 +71,10 @@ class ConnexionLogin extends Component {
     } = this.state;
 
     return (
-      <div className="container">
+      <div className="container connexion-container">
+
         <div className="section">
-          <div className="section-title right">
+          <div className="connexion-title right">
             <h2>Connectez vous à<br></br>votre espace </h2><h2 className="title">Cassini</h2>
           </div>
           <div>
@@ -83,28 +84,29 @@ class ConnexionLogin extends Component {
             <span className="alert">{alertPassword}</span>
             <Link className="link" to={"/forgotpassword"}>Mot de passe oublié ?</Link>
           </div>
-          <div className="section-end">
+          <div className="connexion-end">
             <Link className="link" to={"/signup"}>Vous n'avez pas encore créé de compte ?</Link>
-            <button onClick={this.checkLogin}>Se connecter</button>
+            <button className="confirmed" onClick={this.checkLogin}>Se connecter</button>
           </div>
         </div>
+
         <div className="section">
-          <div className="section-title left">
+          <div className="connexion-title left">
             <h2>Pourquoi<br></br>créer un compte ?</h2>
           </div>
-          <div className="section-point">
+          <div className="connexion-point">
             <div className="point">1</div>
             <span>Accéder à des annonces immobilières qui vous disent enfin tout (photos supplémentaires , plans 3D, diagnostics, etc.)</span>
           </div>
-          <div className="section-point">
+          <div className="connexion-point">
             <div className="point">2</div>
             <span>Organiser vos visites en ligne en quelques clics et visiter des logements en toute autonomie, avec un agent à distance</span>
           </div>
-          <div className="section-point">
+          <div className="connexion-point">
             <div className="point">3</div>
             <span>Profiter de l’accompagnement gratuit d’un expert à chaque étape de votre projet</span>
           </div>
-          <div className="section-point">
+          <div className="connexion-point">
             <div className="point">4</div>
             <span>Bénéficier de services rigoureusement sélectionnés par Monemprunt.com pour me financer, faire réaliser des travaux, organiser mon déménagement et mes changements d’adresses, etc.</span>
           </div>
@@ -113,6 +115,7 @@ class ConnexionLogin extends Component {
             Sorry, your browser doesn't support embedded videos.
           </video>
         </div>
+
       </div>
     );
   }

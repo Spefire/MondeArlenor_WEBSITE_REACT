@@ -1,0 +1,32 @@
+@import "../../../styles/variables";
+
+.profile-container {
+  
+  .profile-options {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile-point {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+  
+    .point {
+      margin-right: 10px;
+      min-width: 20px;
+      min-height: 20px;
+      line-height: 20px;
+      text-align: center;
+      font-weight: bold;
+      color: $light-color;
+      border-radius: 50%;
+      background-color: $primary-color;
+      box-shadow: 0 5px 10px 0 rgba(6, 214, 160, 0.25);
+    }
+  
+    span {
+      font-weight: bold;
+    }
+  }
+}

@@ -131,7 +131,7 @@ class ConnexionSignUp extends Component {
     return (
       <Fragment>
         <div className="section">
-          <div className="section-title right">
+          <div className="connexion-title right">
             <h2>Bienvenue dans<br></br>votre espace </h2><h2 className="title">Cassini</h2>
           </div>
           <div>
@@ -142,28 +142,28 @@ class ConnexionSignUp extends Component {
             <input className={alertPasswordConfirmed ? 'alert' : ''} value={passwordConfirmed} type="password" placeholder="Confirmez votre mot de passe" onChange={this.changePasswordConfirmed}/>
             <span className="alert">{alertPasswordConfirmed}</span>
           </div>
-          <div className="section-end">
+          <div className="connexion-end">
             <Link className="link" to={"/login"}>Vous avez déjà un compte ?</Link>
-            <button onClick={this.checkFirstStep}>S'inscrire</button>
+            <button className="confirmed" onClick={this.checkFirstStep}>S'inscrire</button>
           </div>
         </div>
         <div className="section">
-          <div className="section-title left">
+          <div className="connexion-title left">
             <h2>Pourquoi<br></br>créer un compte ?</h2>
           </div>
-          <div className="section-point">
+          <div className="connexion-point">
             <div className="point">1</div>
             <span>Accéder à des annonces immobilières qui vous disent enfin tout (photos supplémentaires , plans 3D, diagnostics, etc.)</span>
           </div>
-          <div className="section-point">
+          <div className="connexion-point">
             <div className="point">2</div>
             <span>Organiser vos visites en ligne en quelques clics et visiter des logements en toute autonomie, avec un agent à distance</span>
           </div>
-          <div className="section-point">
+          <div className="connexion-point">
             <div className="point">3</div>
             <span>Profiter de l’accompagnement gratuit d’un expert à chaque étape de votre projet</span>
           </div>
-          <div className="section-point">
+          <div className="connexion-point">
             <div className="point">4</div>
             <span>Bénéficier de services rigoureusement sélectionnés par Monemprunt.com pour me financer, faire réaliser des travaux, organiser mon déménagement et mes changements d’adresses, etc.</span>
           </div>
@@ -189,7 +189,7 @@ class ConnexionSignUp extends Component {
     return (
       <Fragment>
         <div className="section">
-          <div className="section-title right">
+          <div className="connexion-title right">
             <h2>Informations complémentaires<br></br>Quelques informations pour mieux vous connaître</h2>
           </div>
           <div>
@@ -200,12 +200,12 @@ class ConnexionSignUp extends Component {
             <input className={alertPhoneNumber ? 'alert' : ''} value={phoneNumber} type="tel" placeholder="Numéro de téléphone" onChange={this.changePhoneNumber}/>
             <span className="alert">{alertPhoneNumber}</span>
           </div>
-          <div className="section-end end">
-            <button onClick={this.checkLastStep}>Valider</button>
+          <div className="connexion-end end">
+            <button className="confirmed" onClick={this.checkLastStep}>Valider</button>
           </div>
         </div>
         <div className="section">
-          <div className="section-title left">
+          <div className="connexion-title left">
             <h2>Pourquoi vous demander ces informations ?</h2>
           </div>
           <p>Ces informations ne seront utilisées qu’en cas de visite ou de constitution d’un dossier. Si vous n’êtes pas encore décidé, vous pouvez passer cette étape, nous verrons ça plus tard.</p>
@@ -218,7 +218,7 @@ class ConnexionSignUp extends Component {
     const { nextStep } = this.state;
 
     return (
-      <div className="container">
+      <div className="container connexion-container">
         { nextStep ? this.renderLastStep() : this.renderFirstStep() }
       </div>
     )

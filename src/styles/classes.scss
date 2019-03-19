@@ -2,15 +2,31 @@
 
 .container {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
   margin-top: -100px;
+  margin-left: calc(5% - 40px);
+  margin-right: calc(5% - 40px);
+
+  .section {
+    height: min-content;
+    width: 45%;
+    margin: 10px;
+    padding: 20px;
+    background-color: $light-color;
+    box-shadow: 0 5px 45px 0 rgba(4, 45, 58, 0.1);
+    border-radius: 5px;
+
+    &.section-left {
+      width: 65%;
+    }
+
+    &.section-right {
+      width: 25%;
+    }
+  }
 }
 
 .link {
   color: $link-color;
   text-decoration: underline;
-}
-
-.alert {
-  color: $alert-color;
 }
