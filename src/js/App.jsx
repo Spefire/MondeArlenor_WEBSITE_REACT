@@ -8,17 +8,27 @@ import HomeContainer from "./views/home/HomeContainer.jsx";
 import OffersContainer from "./views/offers/OffersContainer.jsx";
 import ProfileContainer from "./views/profile/ProfileContainer.jsx";
 
+//Gestion des fonctionnalités
+import { whoIam } from './utils/handleConnection.jsx';
+
+//Imports de redux
+import { connect } from "react-redux";
+import { setUser } from "./redux/actions.js";
+
 //Gestion des styles
 import "../index.scss";
 
 //Déclaration du composant principal
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       isLogged: false
-    }
+    };
+  }
+
+  componentDidMount() {
+    whoIam(this.props.currentLocationAPI);
   }
 
   render() {
@@ -27,7 +37,7 @@ class App extends Component {
       <Fragment>
         <div>
           <Header />
-          { !isLogged ? <Redirect to="/login"/> : null }
+          {!isLogged ? <Redirect to="/login" /> : null}
           <main>
             <Switch>
               <Route exact path="/" component={HomeContainer} />
@@ -41,4 +51,19 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    currentLocationAPI : state.currentLocationAPI
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setUser: user => dispatch(setUser(user))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)

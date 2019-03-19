@@ -8,6 +8,13 @@ import ConnexionLogin from "./connexion-modules/ConnexionLogin";
 import ConnexionSignUp from "./connexion-modules/ConnexionSignUp";
 import ConnexionForgotPassword from "./connexion-modules/ConnexionForgotPassword";
 
+//Gestion des fonctionnalités
+import { whoIam } from '../../utils/handleConnection.jsx'
+
+//Imports de redux
+import { connect } from "react-redux";
+import { setUser } from "../../redux/actions.js";
+
 //Gestion des styles
 import "./Connexion.scss";
 
@@ -19,6 +26,10 @@ class Connexion extends Component {
     this.state = {
       isLogged: false
     }
+  }
+
+  componentDidMount() {
+    whoIam(this.props.currentLocationAPI);
   }
 
   render() {
@@ -41,4 +52,19 @@ class Connexion extends Component {
   }
 }
 
-export default Connexion;
+const mapStateToProps = state => {
+  return {
+    currentLocationAPI : state.currentLocationAPI
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setUser: user => dispatch(setUser(user))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Connexion)

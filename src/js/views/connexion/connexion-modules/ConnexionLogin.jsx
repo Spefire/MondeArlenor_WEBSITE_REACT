@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 //Gestion des imports des images
 import videoLoginSrc from'../../../../assets/videos/video01.webm'
 
+//Gestion des fonctionnalités
+import { login } from '../../../utils/handleConnection.jsx'
+
 //Imports de redux
 import { connect } from "react-redux";
 import { changeLocation } from "../../../redux/actions.js";
@@ -42,6 +45,10 @@ class ConnexionLogin extends Component {
 
     if (password === "") {
       alertPassword = "Veuillez saisir votre mot de passe.";
+    }
+
+    if (!alertEmail && !alertPassword) {
+      login(this.props.currentLocationAPI, email, password);
     }
 
     this.setState({ alertEmail: alertEmail, alertPassword: alertPassword });
@@ -114,6 +121,12 @@ class ConnexionLogin extends Component {
 //------------------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------------
 
+const mapStateToProps = state => {
+  return {
+    currentLocationAPI : state.currentLocationAPI
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     changeLocation: location => dispatch(changeLocation(location))
@@ -121,6 +134,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(ConnexionLogin);
