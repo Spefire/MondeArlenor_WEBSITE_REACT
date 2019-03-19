@@ -7,6 +7,7 @@ import Header from "./../../components/header/Header.jsx";
 import ConnexionLogin from "./connexion-modules/ConnexionLogin";
 import ConnexionSignUp from "./connexion-modules/ConnexionSignUp";
 import ConnexionForgotPassword from "./connexion-modules/ConnexionForgotPassword";
+import NotFoundContainer from "../notfound/NotFoundContainer.jsx";
 
 //Gestion des fonctionnalités
 import { whoIam } from '../../utils/handleConnection.jsx'
@@ -44,6 +45,7 @@ class Connexion extends Component {
               <Route path="/login" component={ConnexionLogin} />
               <Route path="/signup" component={ConnexionSignUp} />
               <Route path="/forgotpassword" component={ConnexionForgotPassword} />
+              <Route component={NotFoundContainer} />
             </Switch>
           </main>
         </div>

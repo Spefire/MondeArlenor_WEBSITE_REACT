@@ -7,6 +7,7 @@ import Header from "./components/header/Header.jsx";
 import HomeContainer from "./views/home/HomeContainer.jsx";
 import OffersContainer from "./views/offers/OffersContainer.jsx";
 import ProfileContainer from "./views/profile/ProfileContainer.jsx";
+import NotFoundContainer from "./views/notfound/NotFoundContainer.jsx";
 
 //Gestion des fonctionnalités
 import { whoIam } from './utils/handleConnection.jsx';
@@ -43,6 +44,7 @@ class App extends Component {
               <Route exact path="/" component={HomeContainer} />
               <Route path="/offers" component={OffersContainer} />
               <Route path="/profile" component={ProfileContainer} />
+              <Route component={NotFoundContainer} />
             </Switch>
           </main>
         </div>
