@@ -26,13 +26,15 @@ class ConnexionSignUp extends Component {
       alertPassword: "",
       alertPasswordConfirmed: "",
       alertPhoneNumber: "",
-      email: "",
-      firstName: "",
-      lastName: "",
       nextStep: false,
-      password: "",
-      passwordConfirmed: "",
-      phoneNumber: ""
+      user : {
+        email: "",
+        firstName: "",
+        lastName: "",
+        password: "",
+        passwordConfirmed: "",
+        phoneNumber: ""
+      },
     }
 
     var currentLocation = this.props.location.pathname;
@@ -44,25 +46,25 @@ class ConnexionSignUp extends Component {
 
   checkFirstStep = () => {
     var alertEmail, alertPassword, alertPasswordConfirmed;
-    const { email, password, passwordConfirmed } = this.state;
+    const { user } = this.state;
 
     var regexEmail = /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/;
-    if (email === "") {
+    if (user.email === "") {
       alertEmail = "Veuillez saisir votre email.";
-    } else if (!regexEmail.test(email)) {
+    } else if (!regexEmail.test(user.email)) {
       alertEmail = "Veuillez saisir un email valide.";
     }
 
     var regexPassword = /^(?=.*[0-9])(?=.*[-!$%^&*()_+|~=`{}[\]:";'<>?,./])(?=.{8,})/;
-    if (password === "") {
+    if (user.password === "") {
       alertPassword = "Veuillez saisir votre mot de passe.";
-    } else if (!regexPassword.test(password)) {
+    } else if (!regexPassword.test(user.password)) {
       alertPassword = "Votre mot de passe doit contenir au minimum : 1 symbole, 1 chiffre et 8 caractères.";
     }
 
-    if (passwordConfirmed === "") {
+    if (user.passwordConfirmed === "") {
       alertPasswordConfirmed = "Veuillez confirmer votre mot de passe.";
-    } else if (passwordConfirmed !== password) {
+    } else if (user.passwordConfirmed !== user.password) {
       alertPasswordConfirmed = "Veuillez saisir des mots de passe identiques.";
     }
 
@@ -76,25 +78,25 @@ class ConnexionSignUp extends Component {
 
   checkLastStep = () => {
     var alertFirstName, alertLastName, alertPhoneNumber;
-    const { firstName, lastName, phoneNumber } = this.state;
+    const { user } = this.state;
 
-    if (firstName === "") {
+    if (user.firstName === "") {
       alertFirstName = "Veuillez saisir votre prénom.";
     }
 
-    if (lastName === "") {
+    if (user.lastName === "") {
       alertLastName = "Veuillez saisir votre nom.";
     }
 
     var regexPhone = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
-    if (phoneNumber === "") {
+    if (user.phoneNumber === "") {
       alertPhoneNumber = "Veuillez saisir votre numéro de téléphone.";
-    } else if (!regexPhone.test(phoneNumber)) {
+    } else if (!regexPhone.test(user.phoneNumber)) {
       alertPhoneNumber = "Veuillez saisir un numéro de téléphone valide.";
     }
 
     if (!alertFirstName && !alertLastName && !alertPhoneNumber) {
-      signup(this.props.currentLocationAPI);
+      signup(this.props.currentLocationAPI, user);
     }
 
     this.setState({
@@ -105,27 +107,69 @@ class ConnexionSignUp extends Component {
   }
 
   changeEmail = (event) => {
-    this.setState({ email: event.target.value });
+    const newData = event.target.value;
+    this.setState((prevState, props) => ({
+      ...prevState,
+      user: {
+        ...prevState.user,
+        email: newData
+      }
+    }));
   }
 
   changeFirstName = (event) => {
-    this.setState({ firstName: event.target.value });
+    const newData = event.target.value;
+    this.setState((prevState, props) => ({
+      ...prevState,
+      user: {
+        ...prevState.user,
+        firstName: newData
+      }
+    }));
   }
 
   changeLastName = (event) => {
-    this.setState({ lastName: event.target.value });
+    const newData = event.target.value;
+    this.setState((prevState, props) => ({
+      ...prevState,
+      user: {
+        ...prevState.user,
+        lastName: newData
+      }
+    }));
   }
 
   changePassword = (event) => {
-    this.setState({ password: event.target.value });
+    const newData = event.target.value;
+    this.setState((prevState, props) => ({
+      ...prevState,
+      user: {
+        ...prevState.user,
+        password: newData
+      }
+    }));
   }
 
   changePasswordConfirmed = (event) => {
-    this.setState({ passwordConfirmed: event.target.value });
+    const newData = event.target.value;
+    this.setState((prevState, props) => ({
+      ...prevState,
+      user: {
+        ...prevState.user,
+        passwordConfirmed: newData
+      }
+    }));
   }
 
   changePhoneNumber = (event) => {
-    this.setState({ phoneNumber: event.target.value });
+    const newData = event.target.value;
+    this.setState((prevState, props) => ({
+      ...prevState,
+      user: {
+        ...prevState.user,
+        phoneNumber: newData
+      }
+    }));
   }
 
   //------------------------------------------------------------------------------------------------------------------
@@ -136,9 +180,7 @@ class ConnexionSignUp extends Component {
       alertEmail,
       alertPassword,
       alertPasswordConfirmed,
-      email,
-      password,
-      passwordConfirmed
+      user
     } = this.state;
 
     return (
@@ -149,11 +191,11 @@ class ConnexionSignUp extends Component {
               <h2>Bienvenue dans<br></br>votre espace </h2><h2 className="title">Cassini</h2>
             </div>
             <div>
-              <input className={alertEmail ? 'alert' : ''} value={email} type="email" placeholder="Adresse email" onChange={this.changeEmail}/>
+              <input className={alertEmail ? 'alert' : ''} value={user.email} type="email" placeholder="Adresse email" onChange={this.changeEmail}/>
               <span className="alert">{alertEmail}</span>
-              <input className={alertPassword ? 'alert' : ''} value={password} type="password" placeholder="Mot de passe" onChange={this.changePassword}/>
+              <input className={alertPassword ? 'alert' : ''} value={user.password} type="password" placeholder="Mot de passe" onChange={this.changePassword}/>
               <span className="alert">{alertPassword}</span>
-              <input className={alertPasswordConfirmed ? 'alert' : ''} value={passwordConfirmed} type="password" placeholder="Confirmez votre mot de passe" onChange={this.changePasswordConfirmed}/>
+              <input className={alertPasswordConfirmed ? 'alert' : ''} value={user.passwordConfirmed} type="password" placeholder="Confirmez votre mot de passe" onChange={this.changePasswordConfirmed}/>
               <span className="alert">{alertPasswordConfirmed}</span>
             </div>
             <div className="connexion-end">
@@ -174,9 +216,7 @@ class ConnexionSignUp extends Component {
       alertFirstName,
       alertLastName,
       alertPhoneNumber,
-      firstName,
-      lastName,
-      phoneNumber
+      user,
     } = this.state;
 
     return (
@@ -187,11 +227,11 @@ class ConnexionSignUp extends Component {
               <h2>Informations complémentaires<br></br>Quelques informations pour mieux vous connaître</h2>
             </div>
             <div>
-              <input className={alertFirstName ? 'alert' : ''} value={firstName} type="text" placeholder="Prénom" onChange={this.changeFirstName}/>
+              <input className={alertFirstName ? 'alert' : ''} value={user.firstName} type="text" placeholder="Prénom" onChange={this.changeFirstName}/>
               <span className="alert">{alertFirstName}</span>
-              <input className={alertLastName ? 'alert' : ''} value={lastName} type="text" placeholder="Nom" onChange={this.changeLastName}/>
+              <input className={alertLastName ? 'alert' : ''} value={user.lastName} type="text" placeholder="Nom" onChange={this.changeLastName}/>
               <span className="alert">{alertLastName}</span>
-              <input className={alertPhoneNumber ? 'alert' : ''} value={phoneNumber} type="tel" placeholder="Numéro de téléphone" onChange={this.changePhoneNumber}/>
+              <input className={alertPhoneNumber ? 'alert' : ''} value={user.phoneNumber} type="tel" placeholder="Numéro de téléphone" onChange={this.changePhoneNumber}/>
               <span className="alert">{alertPhoneNumber}</span>
             </div>
             <div className="connexion-end end">

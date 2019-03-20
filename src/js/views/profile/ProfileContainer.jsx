@@ -28,16 +28,20 @@ class ProfileContainer extends Component {
       alertLastName: "",
       alertNewPassword: "",
       alertNewPasswordConfirmed: "",
-      alertPassword: "",
+      alertOldPassword: "",
       alertPhoneNumber: "",
-      email: "",
-      firstName: "",
-      lastName: "",
-      newPassword: "",
-      newPasswordConfirmed: "",
-      showPopin: false,
-      password: "",
-      phoneNumber: ""
+      infos: {
+        email: "",
+        firstName: "",
+        lastName: "",
+        phoneNumber: ""
+      },
+      passwords: {
+        newPassword: "",
+        newPasswordConfirmed: "",
+        oldPassword: ""
+      },
+      showPopin: false
     }
 
     var currentLocation = this.props.location.pathname;
@@ -48,31 +52,80 @@ class ProfileContainer extends Component {
   //------------------------------------------------------------------------------------------------------------------
 
   changeEmail = (event) => {
-    this.setState({ email: event.target.value });
+    const newData = event.target.value;
+    this.setState((prevState, props) => ({
+      ...prevState,
+      infos: {
+        ...prevState.infos,
+        email: newData
+      }
+    }));
   }
 
   changeFirstName = (event) => {
-    this.setState({ firstName: event.target.value });
+    const newData = event.target.value;
+    this.setState((prevState, props) => ({
+      ...prevState,
+      infos: {
+        ...prevState.infos,
+        firstName: newData
+      }
+    }));
   }
 
   changeLastName = (event) => {
-    this.setState({ lastName: event.target.value });
+    const newData = event.target.value;
+    this.setState((prevState, props) => ({
+      ...prevState,
+      infos: {
+        ...prevState.infos,
+        lastName: newData
+      }
+    }));
   }
 
   changeNewPassword = (event) => {
-    this.setState({ newPassword: event.target.value });
+    const newData = event.target.value;
+    this.setState((prevState, props) => ({
+      ...prevState,
+      passwords: {
+        ...prevState.passwords,
+        newPassword: newData
+      }
+    }));
   }
 
   changeNewPasswordConfirmed = (event) => {
-    this.setState({ newPasswordConfirmed: event.target.value });
+    const newData = event.target.value;
+    this.setState((prevState, props) => ({
+      ...prevState,
+      passwords: {
+        ...prevState.passwords,
+        newPasswordConfirmed: newData
+      }
+    }));
   }
 
-  changePassword = (event) => {
-    this.setState({ password: event.target.value });
+  changeOldPassword = (event) => {
+    const newData = event.target.value;
+    this.setState((prevState, props) => ({
+      ...prevState,
+      passwords: {
+        ...prevState.passwords,
+        oldPassword: newData
+      }
+    }));
   }
 
   changePhoneNumber = (event) => {
-    this.setState({ phoneNumber: event.target.value });
+    const newData = event.target.value;
+    this.setState((prevState, props) => ({
+      ...prevState,
+      infos: {
+        ...prevState.infos,
+        phoneNumber: newData
+      }
+    }));
   }
 
   closePopin = () => {
@@ -90,17 +143,19 @@ class ProfileContainer extends Component {
 
   handleSubscribing = () => {
     console.log("HANDLE SUBSCRIBING");
-    handleSubscribe(this.props.currentLocationAPI);
+    handleSubscribe(this.props.currentLocationAPI, false);
   }
 
   saveNewInfos = () => {
     console.log("SAVE NEW INFOS");
-    saveNewInfos(this.props.currentLocationAPI);
+    const { infos } = this.state;
+    saveNewInfos(this.props.currentLocationAPI, infos);
   }
 
-  saveNewPassword = () => {
-    console.log("SAVE NEW PASSWORD");
-    saveNewPassword(this.props.currentLocationAPI);
+  saveNewPasswords = () => {
+    console.log("SAVE NEW PASSWORDS");
+    const { passwords } = this.state;
+    saveNewPassword(this.props.currentLocationAPI, passwords);
   }
 
   //------------------------------------------------------------------------------------------------------------------
@@ -137,15 +192,10 @@ class ProfileContainer extends Component {
       alertLastName,
       alertNewPassword,
       alertNewPasswordConfirmed,
-      alertPassword,
+      alertOldPassword,
       alertPhoneNumber,
-      email,
-      firstName,
-      lastName,
-      newPassword,
-      newPasswordConfirmed,
-      password,
-      phoneNumber
+      infos,
+      passwords
     } = this.state;
 
     return (
@@ -158,26 +208,26 @@ class ProfileContainer extends Component {
               <h2>Mon compte</h2>
               <div>
                 <h4>Informations générales</h4>
-                <input className={alertFirstName ? 'alert' : ''} value={firstName} type="text" placeholder="Prénom" onChange={this.changeFirstName}/>
+                <input className={alertFirstName ? 'alert' : ''} value={infos.firstName} type="text" placeholder="Prénom" onChange={this.changeFirstName}/>
                 <span className="alert">{alertFirstName}</span>
-                <input className={alertLastName ? 'alert' : ''} value={lastName} type="text" placeholder="Nom" onChange={this.changeLastName}/>
+                <input className={alertLastName ? 'alert' : ''} value={infos.lastName} type="text" placeholder="Nom" onChange={this.changeLastName}/>
                 <span className="alert">{alertLastName}</span>
-                <input className={alertEmail ? 'alert' : ''} value={email} type="email" placeholder="Adresse email" onChange={this.changeEmail}/>
+                <input className={alertEmail ? 'alert' : ''} value={infos.email} type="email" placeholder="Adresse email" onChange={this.changeEmail}/>
                 <span className="alert">{alertEmail}</span>
-                <input className={alertPhoneNumber ? 'alert' : ''} value={phoneNumber} type="tel" placeholder="Numéro de téléphone" onChange={this.changePhoneNumber}/>
+                <input className={alertPhoneNumber ? 'alert' : ''} value={infos.phoneNumber} type="tel" placeholder="Numéro de téléphone" onChange={this.changePhoneNumber}/>
                 <span className="alert">{alertPhoneNumber}</span>
               </div>
               <button className="confirmed" onClick={this.saveNewInfos}>Enregistrer les changements</button>
               <div>
                 <h4>Changer de mot de passe</h4>
-                <input className={alertPassword ? 'alert' : ''} value={password} type="password" placeholder="Ancien mot de passe" onChange={this.changePassword}/>
-                <span className="alert">{alertPassword}</span>
-                <input className={alertNewPassword ? 'alert' : ''} value={newPassword} type="password" placeholder="Nouveau mot de passe" onChange={this.changeNewPassword}/>
+                <input className={alertOldPassword ? 'alert' : ''} value={passwords.oldPassword} type="password" placeholder="Ancien mot de passe" onChange={this.changeOldPassword}/>
+                <span className="alert">{alertOldPassword}</span>
+                <input className={alertNewPassword ? 'alert' : ''} value={passwords.newPassword} type="password" placeholder="Nouveau mot de passe" onChange={this.changeNewPassword}/>
                 <span className="alert">{alertNewPassword}</span>
-                <input className={alertNewPasswordConfirmed ? 'alert' : ''} value={newPasswordConfirmed} type="password" placeholder="Confirmer nouveau mot de passe" onChange={this.changeNewPasswordConfirmed}/>
+                <input className={alertNewPasswordConfirmed ? 'alert' : ''} value={passwords.newPasswordConfirmed} type="password" placeholder="Confirmer nouveau mot de passe" onChange={this.changeNewPasswordConfirmed}/>
                 <span className="alert">{alertNewPasswordConfirmed}</span>
               </div>
-              <button className="confirmed" onClick={this.saveNewPassword}>Valider</button>
+              <button className="confirmed" onClick={this.saveNewPasswords}>Valider</button>
             </div>
 
             <div className="section">

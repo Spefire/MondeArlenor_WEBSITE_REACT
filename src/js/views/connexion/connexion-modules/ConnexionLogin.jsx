@@ -22,8 +22,10 @@ class ConnexionLogin extends Component {
     this.state = {
       alertEmail: "",
       alertPassword: "",
-      email: "",
-      password: ""
+      user : {
+        email: "",
+        password: ""
+      }
     }
 
     var currentLocation = this.props.location.pathname;
@@ -35,34 +37,48 @@ class ConnexionLogin extends Component {
 
   checkLogin = () => {
     var alertEmail, alertPassword;
-    const { email, password } = this.state;
+    const { user } = this.state;
 
     var regexEmail = /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/;
-    if (email === "") {
+    if (user.email === "") {
       alertEmail = "Veuillez saisir votre email.";
-    } else if (!regexEmail.test(email)) {
+    } else if (!regexEmail.test(user.email)) {
       alertEmail = "Veuillez saisir un email valide.";
     }/* else if ( email ) {
       alertEmail = "Votre email n'existe pas, veuillez vous inscrire dans un premier temps.";
     }*/
 
-    if (password === "") {
+    if (user.password === "") {
       alertPassword = "Veuillez saisir votre mot de passe.";
     }
 
     if (!alertEmail && !alertPassword) {
-      login(this.props.currentLocationAPI, email, password);
+      login(this.props.currentLocationAPI, user);
     }
 
     this.setState({ alertEmail: alertEmail, alertPassword: alertPassword });
   }
 
   changeEmail = (event) => {
-    this.setState({ email: event.target.value });
+    const newData = event.target.value;
+    this.setState((prevState, props) => ({
+      ...prevState,
+      user: {
+        ...prevState.user,
+        email: newData
+      }
+    }));
   }
 
   changePassword = (event) => {
-    this.setState({ password: event.target.value });
+    const newData = event.target.value;
+    this.setState((prevState, props) => ({
+      ...prevState,
+      user: {
+        ...prevState.user,
+        password: newData
+      }
+    }));
   }
 
   //------------------------------------------------------------------------------------------------------------------
@@ -72,8 +88,7 @@ class ConnexionLogin extends Component {
     const {
       alertEmail,
       alertPassword,
-      email,
-      password
+      user,
     } = this.state;
 
     return (
@@ -82,9 +97,9 @@ class ConnexionLogin extends Component {
           <h2>Connectez vous à<br></br>votre espace </h2><h2 className="title">Cassini</h2>
         </div>
         <div>
-          <input className={alertEmail ? 'alert' : ''} value={email} type="email" placeholder="Adresse email" onChange={this.changeEmail}/>
+          <input className={alertEmail ? 'alert' : ''} value={user.email} type="email" placeholder="Adresse email" onChange={this.changeEmail}/>
           <span className="alert">{alertEmail}</span>
-          <input className={alertPassword ? 'alert' : ''} value={password} type="password" placeholder="Mot de passe" onChange={this.changePassword}/>
+          <input className={alertPassword ? 'alert' : ''} value={user.password} type="password" placeholder="Mot de passe" onChange={this.changePassword}/>
           <span className="alert">{alertPassword}</span>
           <Link className="link" to={"/forgotpassword"}>Mot de passe oublié ?</Link>
         </div>
