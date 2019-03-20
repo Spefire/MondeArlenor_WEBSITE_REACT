@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 
 //Gestion des fonctionnalités
-import { logout } from '../../utils/handleConnection.jsx'
+import { logout } from '../../utils/requests.jsx'
 
 //Gestion du redux
 import { connect } from "react-redux";

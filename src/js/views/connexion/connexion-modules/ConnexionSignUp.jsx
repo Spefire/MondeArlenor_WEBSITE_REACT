@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 //Imports des composants
 import ConnexionSection from '../../../components/connexion-section/ConnexionSection';
 
+//Gestion des fonctionnalités
+import { signup } from '../../../utils/requests.jsx'
+
 //Imports de redux
 import { connect } from "react-redux";
 import { changeLocation } from "../../../redux/actions.js";
@@ -88,6 +91,10 @@ class ConnexionSignUp extends Component {
       alertPhoneNumber = "Veuillez saisir votre numéro de téléphone.";
     } else if (!regexPhone.test(phoneNumber)) {
       alertPhoneNumber = "Veuillez saisir un numéro de téléphone valide.";
+    }
+
+    if (!alertFirstName && !alertLastName && !alertPhoneNumber) {
+      signup(this.props.currentLocationAPI);
     }
 
     this.setState({

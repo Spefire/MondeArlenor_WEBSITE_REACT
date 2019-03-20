@@ -10,7 +10,7 @@ import ProfileContainer from "./views/profile/ProfileContainer.jsx";
 import NotFoundContainer from "./views/notfound/NotFoundContainer.jsx";
 
 //Gestion des fonctionnalités
-import { whoIam } from './utils/handleConnection.jsx';
+import { whoIam } from './utils/requests.jsx';
 
 //Imports de redux
 import { connect } from "react-redux";
@@ -24,7 +24,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogged: false
+      isLogged: true
     };
   }
 

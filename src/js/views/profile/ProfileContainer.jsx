@@ -4,6 +4,9 @@ import React, { Component, Fragment } from "react";
 //Imports des composants
 import HelpSection from "../../components/help-section/HelpSection.jsx";
 
+//Gestion des fonctionnalités
+import { deleteAccount, handleSubscribe, saveNewInfos, saveNewPassword } from '../../utils/requests.jsx';
+
 //Imports de redux
 import { connect } from "react-redux";
 import { changeLocation } from "../../redux/actions.js";
@@ -40,6 +43,9 @@ class ProfileContainer extends Component {
     var currentLocation = this.props.location.pathname;
     this.props.changeLocation(currentLocation);
   }
+
+  //------------------------------------------------------------------------------------------------------------------
+  //------------------------------------------------------------------------------------------------------------------
 
   changeEmail = (event) => {
     this.setState({ email: event.target.value });
@@ -79,15 +85,26 @@ class ProfileContainer extends Component {
 
   deleteAccount = () => {
     console.log("DELETE ACCOUNT");
+    deleteAccount(this.props.currentLocationAPI);
   }
 
-  sendNewPassword = () => {
-    console.log("SEND NEW PASSWORD");
+  handleSubscribing = () => {
+    console.log("HANDLE SUBSCRIBING");
+    handleSubscribe(this.props.currentLocationAPI);
   }
 
-  unsubscribe = () => {
-    console.log("UNSUBSCRIBE");
+  saveNewInfos = () => {
+    console.log("SAVE NEW INFOS");
+    saveNewInfos(this.props.currentLocationAPI);
   }
+
+  saveNewPassword = () => {
+    console.log("SAVE NEW PASSWORD");
+    saveNewPassword(this.props.currentLocationAPI);
+  }
+
+  //------------------------------------------------------------------------------------------------------------------
+  //------------------------------------------------------------------------------------------------------------------
 
   renderPopin = () => {
     const { showPopin } = this.state;
@@ -150,6 +167,7 @@ class ProfileContainer extends Component {
                 <input className={alertPhoneNumber ? 'alert' : ''} value={phoneNumber} type="tel" placeholder="Numéro de téléphone" onChange={this.changePhoneNumber}/>
                 <span className="alert">{alertPhoneNumber}</span>
               </div>
+              <button className="confirmed" onClick={this.saveNewInfos}>Enregistrer les changements</button>
               <div>
                 <h4>Changer de mot de passe</h4>
                 <input className={alertPassword ? 'alert' : ''} value={password} type="password" placeholder="Ancien mot de passe" onChange={this.changePassword}/>
@@ -159,13 +177,13 @@ class ProfileContainer extends Component {
                 <input className={alertNewPasswordConfirmed ? 'alert' : ''} value={newPasswordConfirmed} type="password" placeholder="Confirmer nouveau mot de passe" onChange={this.changeNewPasswordConfirmed}/>
                 <span className="alert">{alertNewPasswordConfirmed}</span>
               </div>
-              <button className="confirmed" onClick={this.sendNewPassword}>Valider</button>
+              <button className="confirmed" onClick={this.saveNewPassword}>Valider</button>
             </div>
 
             <div className="section">
               <div className="profile-options">
                 <span>Vous ne souhaitez plus recevoir nos emails ?</span>
-                <button className="alert" onClick={this.unsubscribe}>Se désabonner</button>
+                <button className="alert" onClick={this.handleSubscribing}>Se désabonner</button>
               </div>
               <div className="profile-options">
                 <span>Vous souhaitez supprimer votre compte ?</span>
@@ -186,6 +204,12 @@ class ProfileContainer extends Component {
 //------------------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------------
 
+const mapStateToProps = state => {
+  return {
+    currentLocationAPI : state.currentLocationAPI
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     changeLocation: location => dispatch(changeLocation(location))
@@ -193,6 +217,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(ProfileContainer);

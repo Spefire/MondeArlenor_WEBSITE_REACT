@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import ConnexionSection from '../../../components/connexion-section/ConnexionSection';
 
 //Gestion des fonctionnalités
-import { login } from '../../../utils/handleConnection.jsx'
+import { login } from '../../../utils/requests.jsx'
 
 //Imports de redux
 import { connect } from "react-redux";

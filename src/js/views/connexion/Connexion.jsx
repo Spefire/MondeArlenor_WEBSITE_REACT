@@ -10,7 +10,7 @@ import ConnexionForgotPassword from "./connexion-modules/ConnexionForgotPassword
 import NotFoundContainer from "../notfound/NotFoundContainer.jsx";
 
 //Gestion des fonctionnalités
-import { whoIam } from '../../utils/handleConnection.jsx'
+import { whoIam } from '../../utils/requests.jsx'
 
 //Imports de redux
 import { connect } from "react-redux";
@@ -25,7 +25,7 @@ class Connexion extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogged: false
+      isLogged: true
     }
   }
 
