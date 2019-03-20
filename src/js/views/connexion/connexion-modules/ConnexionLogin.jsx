@@ -56,7 +56,7 @@ class ConnexionLogin extends Component {
       login(this.props.currentLocationAPI, user);
     }
 
-    this.setState({ alertEmail: alertEmail, alertPassword: alertPassword });
+    this.setState({ alertEmail, alertPassword });
   }
 
   changeEmail = (event) => {

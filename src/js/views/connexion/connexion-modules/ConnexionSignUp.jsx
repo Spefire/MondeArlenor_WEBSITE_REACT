@@ -69,9 +69,9 @@ class ConnexionSignUp extends Component {
     }
 
     this.setState({
-      alertEmail: alertEmail,
-      alertPassword: alertPassword,
-      alertPasswordConfirmed: alertPasswordConfirmed,
+      alertEmail,
+      alertPassword,
+      alertPasswordConfirmed,
       nextStep: (!alertEmail && !alertPassword && !alertPasswordConfirmed)
     });
   }
@@ -99,11 +99,7 @@ class ConnexionSignUp extends Component {
       signup(this.props.currentLocationAPI, user);
     }
 
-    this.setState({
-      alertFirstName: alertFirstName,
-      alertLastName: alertLastName,
-      alertPhoneNumber: alertPhoneNumber
-    });
+    this.setState({ alertFirstName, alertLastName, alertPhoneNumber });
   }
 
   changeEmail = (event) => {

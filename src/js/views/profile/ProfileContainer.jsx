@@ -147,15 +147,64 @@ class ProfileContainer extends Component {
   }
 
   saveNewInfos = () => {
-    console.log("SAVE NEW INFOS");
+    var alertFirstName, alertLastName, alertEmail, alertPhoneNumber;
     const { infos } = this.state;
-    saveNewInfos(this.props.currentLocationAPI, infos);
+
+    if (infos.firstName === "") {
+      alertFirstName = "Veuillez saisir votre prénom.";
+    }
+
+    if (infos.lastName === "") {
+      alertLastName = "Veuillez saisir votre nom.";
+    }
+
+    var regexEmail = /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/;
+    if (infos.email === "") {
+      alertEmail = "Veuillez saisir votre email.";
+    } else if (!regexEmail.test(infos.email)) {
+      alertEmail = "Veuillez saisir un email valide.";
+    }
+
+    var regexPhone = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
+    if (infos.phoneNumber === "") {
+      alertPhoneNumber = "Veuillez saisir votre numéro de téléphone.";
+    } else if (!regexPhone.test(infos.phoneNumber)) {
+      alertPhoneNumber = "Veuillez saisir un numéro de téléphone valide.";
+    }
+
+    if (!alertFirstName && !alertLastName && !alertEmail && !alertPhoneNumber) {
+      saveNewInfos(this.props.currentLocationAPI, infos);
+    }
+
+    this.setState({ alertFirstName, alertLastName, alertEmail, alertPhoneNumber });
   }
 
   saveNewPasswords = () => {
-    console.log("SAVE NEW PASSWORDS");
+    var alertNewPassword, alertNewPasswordConfirmed, alertOldPassword;
     const { passwords } = this.state;
-    saveNewPassword(this.props.currentLocationAPI, passwords);
+
+    if (passwords.oldPassword === "") {
+      alertOldPassword = "Veuillez saisir votre ancien mot de passe.";
+    }
+
+    var regexPassword = /^(?=.*[0-9])(?=.*[-!$%^&*()_+|~=`{}[\]:";'<>?,./])(?=.{8,})/;
+    if (passwords.newPassword === "") {
+      alertNewPassword = "Veuillez saisir votre nouveau mot de passe.";
+    } else if (!regexPassword.test(passwords.newPassword)) {
+      alertNewPassword = "Votre mot de passe doit contenir au minimum : 1 symbole, 1 chiffre et 8 caractères.";
+    }
+
+    if (passwords.newPasswordConfirmed === "") {
+      alertNewPasswordConfirmed = "Veuillez confirmer votre nouveau mot de passe.";
+    } else if (passwords.newPasswordConfirmed !== passwords.newPassword) {
+      alertNewPasswordConfirmed = "Veuillez saisir des mots de passe identiques.";
+    }
+
+    if (!alertNewPassword && !alertNewPasswordConfirmed && !alertOldPassword) {
+      saveNewPassword(this.props.currentLocationAPI, passwords);
+    }
+
+    this.setState({ alertNewPassword, alertNewPasswordConfirmed, alertOldPassword });
   }
 
   //------------------------------------------------------------------------------------------------------------------
