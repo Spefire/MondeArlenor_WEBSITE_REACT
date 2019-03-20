@@ -2,28 +2,40 @@
 
 .container {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
   margin-top: -100px;
-  margin-left: calc(5% - 40px);
-  margin-right: calc(5% - 40px);
+
+  .container-sections {
+    width: 45%;
+
+    &.big {
+      width: 65%;
+    }
+  
+    &.little {
+      width: 25%;
+    }
+  }
 
   .section {
     height: min-content;
-    width: 45%;
     margin: 10px;
     padding: 20px;
     background-color: $light-color;
     box-shadow: 0 5px 45px 0 rgba(4, 45, 58, 0.1);
     border-radius: 5px;
-
-    &.section-left {
-      width: 65%;
-    }
-
-    &.section-right {
-      width: 25%;
-    }
   }
+}
+
+.popin-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-top: 200px;
+  z-index: 1;
+  background-color: rgba(4, 30, 58, 0.3);
 }
 
 .link {

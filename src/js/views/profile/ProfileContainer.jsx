@@ -1,5 +1,8 @@
 //Imports bibliothèques
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+
+//Imports des composants
+import HelpSection from "../../components/help-section/HelpSection.jsx";
 
 //Imports de redux
 import { connect } from "react-redux";
@@ -29,6 +32,7 @@ class ProfileContainer extends Component {
       lastName: "",
       newPassword: "",
       newPasswordConfirmed: "",
+      showPopin: false,
       password: "",
       phoneNumber: ""
     }
@@ -65,12 +69,16 @@ class ProfileContainer extends Component {
     this.setState({ phoneNumber: event.target.value });
   }
 
-  deleteAccount = () => {
-    console.log("DELETE ACCOUNT");
+  closePopin = () => {
+    this.setState({ showPopin: false });
   }
 
-  seeProjectSteps = () => {
-    console.log("SEE PROJECT STEPS");
+  openPopin = () => {
+    this.setState({ showPopin: true });
+  }
+
+  deleteAccount = () => {
+    console.log("DELETE ACCOUNT");
   }
 
   sendNewPassword = () => {
@@ -79,6 +87,30 @@ class ProfileContainer extends Component {
 
   unsubscribe = () => {
     console.log("UNSUBSCRIBE");
+  }
+
+  renderPopin = () => {
+    const { showPopin } = this.state;
+    if (showPopin) {
+      return (
+        <div className="container popin-container">
+          <div className="container-sections big">
+            <div className="section">
+              <h2>Supprimer mon compte ?</h2>
+              <span>Si vous supprimez votre compte, il ne vous sera plus possible de consulter les documents liés à votre projet.</span>
+              <span>Souhaitez-vous vraiment supprimer votre compte ?</span>
+              <div>
+                <button className="alert" onClick={this.closePopin}>Annuler</button>
+                <button className="confirmed" onClick={this.deleteAccount}>Supprimer mon compte</button>
+              </div>
+            </div>
+          </div>
+          <div className="container-sections little">
+            <HelpSection/>
+          </div>
+        </div>
+      )
+    }
   }
 
   render() {
@@ -100,62 +132,53 @@ class ProfileContainer extends Component {
     } = this.state;
 
     return (
-      <div className="container profile-container">
+      <Fragment>
+        {this.renderPopin()}
+        <div className="container profile-container">
 
-        <div className="section section-left">
-          <h2>Mon compte</h2>
-          <div>
-            <h4>Informations générales</h4>
-            <input className={alertFirstName ? 'alert' : ''} value={firstName} type="text" placeholder="Prénom" onChange={this.changeFirstName}/>
-            <span className="alert">{alertFirstName}</span>
-            <input className={alertLastName ? 'alert' : ''} value={lastName} type="text" placeholder="Nom" onChange={this.changeLastName}/>
-            <span className="alert">{alertLastName}</span>
-            <input className={alertEmail ? 'alert' : ''} value={email} type="email" placeholder="Adresse email" onChange={this.changeEmail}/>
-            <span className="alert">{alertEmail}</span>
-            <input className={alertPhoneNumber ? 'alert' : ''} value={phoneNumber} type="tel" placeholder="Numéro de téléphone" onChange={this.changePhoneNumber}/>
-            <span className="alert">{alertPhoneNumber}</span>
-          </div>
-          <div>
-            <h4>Changer de mot de passe</h4>
-            <input className={alertPassword ? 'alert' : ''} value={password} type="password" placeholder="Ancien mot de passe" onChange={this.changePassword}/>
-            <span className="alert">{alertPassword}</span>
-            <input className={alertNewPassword ? 'alert' : ''} value={newPassword} type="password" placeholder="Nouveau mot de passe" onChange={this.changeNewPassword}/>
-            <span className="alert">{alertNewPassword}</span>
-            <input className={alertNewPasswordConfirmed ? 'alert' : ''} value={newPasswordConfirmed} type="password" placeholder="Confirmer nouveau mot de passe" onChange={this.changeNewPasswordConfirmed}/>
-            <span className="alert">{alertNewPasswordConfirmed}</span>
-          </div>
-          <button className="confirmed" onClick={this.sendNewPassword}>Valider</button>
-        </div>
+          <div className="container-sections big">
+            <div className="section">
+              <h2>Mon compte</h2>
+              <div>
+                <h4>Informations générales</h4>
+                <input className={alertFirstName ? 'alert' : ''} value={firstName} type="text" placeholder="Prénom" onChange={this.changeFirstName}/>
+                <span className="alert">{alertFirstName}</span>
+                <input className={alertLastName ? 'alert' : ''} value={lastName} type="text" placeholder="Nom" onChange={this.changeLastName}/>
+                <span className="alert">{alertLastName}</span>
+                <input className={alertEmail ? 'alert' : ''} value={email} type="email" placeholder="Adresse email" onChange={this.changeEmail}/>
+                <span className="alert">{alertEmail}</span>
+                <input className={alertPhoneNumber ? 'alert' : ''} value={phoneNumber} type="tel" placeholder="Numéro de téléphone" onChange={this.changePhoneNumber}/>
+                <span className="alert">{alertPhoneNumber}</span>
+              </div>
+              <div>
+                <h4>Changer de mot de passe</h4>
+                <input className={alertPassword ? 'alert' : ''} value={password} type="password" placeholder="Ancien mot de passe" onChange={this.changePassword}/>
+                <span className="alert">{alertPassword}</span>
+                <input className={alertNewPassword ? 'alert' : ''} value={newPassword} type="password" placeholder="Nouveau mot de passe" onChange={this.changeNewPassword}/>
+                <span className="alert">{alertNewPassword}</span>
+                <input className={alertNewPasswordConfirmed ? 'alert' : ''} value={newPasswordConfirmed} type="password" placeholder="Confirmer nouveau mot de passe" onChange={this.changeNewPasswordConfirmed}/>
+                <span className="alert">{alertNewPasswordConfirmed}</span>
+              </div>
+              <button className="confirmed" onClick={this.sendNewPassword}>Valider</button>
+            </div>
 
-        <div className="section section-right">
-          <button onClick={this.seeProjectSteps}>Voir les étapes de votre projet</button>
-          <h4>Une question ? Posez-la directement à l'un de nos experts en ligne.</h4>
-          <div className="profile-point">
-            <div className="point">?</div>
-            <span>Vous souhaitez réserver une visite ?</span>
+            <div className="section">
+              <div className="profile-options">
+                <span>Vous ne souhaitez plus recevoir nos emails ?</span>
+                <button className="alert" onClick={this.unsubscribe}>Se désabonner</button>
+              </div>
+              <div className="profile-options">
+                <span>Vous souhaitez supprimer votre compte ?</span>
+                <button className="alert" onClick={this.openPopin}>Supprimer mon compte</button>
+              </div>
+            </div>
           </div>
-          <div className="profile-point">
-            <div className="point">?</div>
-            <span>Vous souhaitez faire une offre sur un bien ?</span>
-          </div>
-          <div className="profile-point">
-            <div className="point">?</div>
-            <span>Vous souhaitez télécharger des documents supplémentaires ?</span>
-          </div>
-        </div>
-        
-        <div className="section section-left">
-          <div className="profile-options">
-            <span>Vous ne souhaitez plus recevoir nos emails ?</span>
-            <button className="alert" onClick={this.unsubscribe}>Se désabonner</button>
-          </div>
-          <div className="profile-options">
-            <span>Vous souhaitez supprimer votre compte ?</span>
-            <button className="alert" onClick={this.deleteAccount}>Supprimer mon compte</button>
+
+          <div className="container-sections little">
+            <HelpSection/>
           </div>
         </div>
-      </div>
-
+      </Fragment>
     );
   }
 }
