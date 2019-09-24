@@ -3,9 +3,4 @@ const changeLocation = location => ({
   location: location
 });
 
-const setUser = (user) => ({
-  type: "SET_USER",
-  user: user
-});
-
-export { changeLocation, setUser };
+export { changeLocation };

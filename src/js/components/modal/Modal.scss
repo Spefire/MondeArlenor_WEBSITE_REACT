@@ -1,0 +1,167 @@
+@import '../../../styles/variables.scss';
+
+.modal-container {
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  &.cover {
+    z-index: 9999;
+  }
+
+  .container {
+    position: unset;
+    align-items: flex-start;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    @media screen and (min-width: $mobile-breakpoint + 1) {
+      padding-top: 32px;
+      padding-bottom: 32px;
+    }
+  }
+
+  .modal-content-wrapper {
+    width: 100%;
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &.visible {
+    pointer-events: auto;
+
+    .modal {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1) translateY(0);
+    }
+    .modal-backdrop {
+      opacity: 1;
+    }
+  }
+
+  &.center-content {
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal {
+      max-height: calc(100vh - 20px);
+
+      @media screen and (min-width: $mobile-breakpoint + 1) {
+        max-height: calc(100vh - 64px);
+      }
+    }
+  }
+
+  .modal {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1) translateY(60px);
+
+    transition: opacity .2s ease-in-out, transform .2s ease-in-out;
+    backface-visibility: hidden;
+
+    margin: 0 auto;
+    width: 100%;
+    max-width: 960px;
+    max-height: calc(100vh - 64px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      max-height: calc(100vh - 20px);
+    }
+
+    &-title {
+      padding-bottom: 10px;
+
+      @media screen and (min-width: $mobile-breakpoint + 1) {
+        padding-bottom: 20px;
+      }
+
+      h2 {
+        margin: 0;
+      }
+    }
+    &-content {
+      flex-grow: 1;
+      overflow: auto;
+      padding: 20px;
+      padding-bottom: 10px;
+
+      @media screen and (min-width: $mobile-breakpoint + 1) {
+        padding: 40px;
+        padding-bottom: 20px;
+      }
+    }
+    &-actions {
+      display: flex;
+      flex-shrink: 0;
+      justify-content: space-between;
+      padding: 20px;
+      padding-top: 10px;
+
+      @media screen and (min-width: $mobile-breakpoint + 1) {
+        padding: 40px;
+        padding-top: 20px;
+      }
+
+      @media screen and (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+
+        .right-buttons {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        button {
+          margin: 0;
+
+          &:not(:last-child) {
+            margin-bottom: 20px;
+          }
+        }
+
+        .back-button {
+          order: 2;
+          margin-bottom: 0 !important;
+
+          &:not(:last-child) {
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-color: rgba(4, 30, 58, 0.3);
+
+    opacity: 0;
+
+    transition: opacity .2s ease-in-out;
+  }
+}

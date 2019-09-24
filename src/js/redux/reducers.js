@@ -1,7 +1,5 @@
 const initialState = {
-  currentUser: null,
-  currentLocation: "/",
-  currentLocationAPI: "http://localhost:3002/api/v1/"
+  currentLocation: "/"
 };
 
 const reducer = (state = initialState, action) => {
@@ -9,9 +7,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "CHANGE_LOCATION":
       newState.currentLocation = action.location;
-      break;
-    case "SET_USER":
-      newState.currentUser = action.user;
+      window.scrollTo(0,0);
       break;
     default:
       return state;

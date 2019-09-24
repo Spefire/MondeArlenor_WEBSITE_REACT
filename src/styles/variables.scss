@@ -1,16 +1,33 @@
-$light-color: #ffffff;
-$dark-color: #000000;
-$background-color: #f1f4f9;
+// Colors
+$navy: #041E3A;
+$royal-blue: #3D3BF3;
+$pale-gold: #FFD166;
+$aquamarine: #06d6a0;
+$watermelon: #ef476f;
 
-$primary-color: #3d3bf3;
-$dark-primary-color: #2b2aac;
+$light-color: #FFFFFF;
+$messenger-color: #0084ff;
 
-$secondary-color: #06d6a0;
+$primary-color: $royal-blue;
+$secondary-color: $aquamarine;
+$alert-color: $watermelon;
 
-$link-color: #3d3bf3;
-$alert-color: #ef476f;
+$background-color: #F1F4F9;
+$light-background: #FAFBFD;
+$darker-background: #EFF2F7;
 
-$big-font: 24px;
-$normal-font: 12px;
-$little-font: 10px;
-$color-font: #041e3a;
+// TEXT SIZES
+$very-big-font: 76px;
+$page-title-size: 28px;
+$title-size: 17px;
+$base-font-size: 12px;
+
+// TEXT COLOR
+$default-font-color: $navy;
+$alternative-font-color: #001E3F;
+$faded-font-color: rgba($navy, .5);
+
+$border-color: rgba($navy, .3);
+$subtle-border-color: rgba($navy, .1);
+
+$mobile-breakpoint: 880px;

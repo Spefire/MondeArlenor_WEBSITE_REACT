@@ -1,71 +1,52 @@
-//Gestion des imports bibliothèques
+//Import des bibliothèques
 import React, { Component, Fragment } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 
-//Gestion des imports des composants
+//Import des composants
 import Header from "./components/header/Header.jsx";
+import Footer from './components/footer/Footer';
+
 import HomeContainer from "./views/home/HomeContainer.jsx";
-import OffersContainer from "./views/offers/OffersContainer.jsx";
-import ProfileContainer from "./views/profile/ProfileContainer.jsx";
-import NotFoundContainer from "./views/notfound/NotFoundContainer.jsx";
+import UniverseContainer from "./views/universe/UniverseContainer.jsx";
+import CrystalsContainer from "./views/universe/crystals/CrystalsContainer.jsx";
+import PopulationContainer from "./views/universe/population/PopulationContainer.jsx";
+import ReligionContainer from "./views/universe/religion/ReligionContainer.jsx";
 
-//Gestion des fonctionnalités
-import { whoIam } from './utils/requests.jsx';
+import AboutContainer from "./views/about/AboutContainer.jsx";
+import LegacyContainer from "./views/legacy/LegacyContainer.jsx";
 
-//Imports de redux
-import { connect } from "react-redux";
-import { setUser } from "./redux/actions.js";
+//------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------
 
-//Gestion des styles
-import "../index.scss";
-
-//Déclaration du composant principal
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLogged: true
-    };
-  }
 
-  componentDidMount() {
-    whoIam(this.props.currentLocationAPI);
-  }
+  //------------------------------------------------------------------------------------------------------------------
+  // Rendu principal, appelé en premier
+  //------------------------------------------------------------------------------------------------------------------
 
   render() {
-    const { isLogged } = this.state;
     return (
       <Fragment>
-        <div>
-          <Header isLogged={isLogged}/>
-          {!isLogged ? <Redirect to="/login" /> : null}
-          <main>
-            <Switch>
-              <Route exact path="/" component={HomeContainer} />
-              <Route path="/offers" component={OffersContainer} />
-              <Route path="/profile" component={ProfileContainer} />
-              <Route component={NotFoundContainer} />
-            </Switch>
-          </main>
-        </div>
+        <Header/>
+        <main>
+          <Switch>
+            <Route exact path="/" component={HomeContainer} />
+
+            <Route exact path="/universe" component={UniverseContainer} />
+            <Route exact path="/universe/religion" component={ReligionContainer} />
+            <Route exact path="/universe/crystals" component={CrystalsContainer} />
+            <Route exact path="/universe/population" component={PopulationContainer} />
+
+            <Route exact path="/about" component={AboutContainer} />
+            <Route exact path="/legacy" component={LegacyContainer} />
+
+            <Route component={HomeContainer} />
+          </Switch>
+        </main>
+        <Footer/>
       </Fragment>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    currentLocationAPI : state.currentLocationAPI
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    setUser: user => dispatch(setUser(user))
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App)
+export default withRouter(App);

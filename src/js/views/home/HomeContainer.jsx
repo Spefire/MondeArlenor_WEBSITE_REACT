@@ -1,71 +1,44 @@
-//Imports bibliothèques
-import React, { Component, Fragment } from "react";
+//Import des bibliothèques
+import React, { Component } from "react";
 
-//Imports des composants
-import Text from "../../components/text/Text.jsx";
-import HomeVisit from './home-modules/HomeVisit';
-import HomeSingleAnnounce from './home-modules/HomeSingleAnnounce';
-import HomeParcours from './home-modules/HomeParcours';
-import HomeOffer from './home-modules/HomeOffer';
-import HomeListAnnounces from "./home-modules/HomeListAnnounces.jsx";
-
-//Imports de redux
+//Import de redux
 import { connect } from "react-redux";
 import { changeLocation } from "../../redux/actions.js";
 
-//Imports des styles
+//Import des styles
 import "./HomeContainer.scss";
 
 //------------------------------------------------------------------------------------------------------------------
+// Page Home
 //------------------------------------------------------------------------------------------------------------------
 
 class HomeContainer extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
-      mode: "LIST"
-    };
+      title: "Le Monde d'Arlénor"
+    }
 
     var currentLocation = this.props.location.pathname;
     this.props.changeLocation(currentLocation);
   }
 
+  //------------------------------------------------------------------------------------------------------------------
+  // Rendu principal, appelé en premier
+  //------------------------------------------------------------------------------------------------------------------
+
   render() {
-    const { mode } = this.state;
+    const { title } = this.state;
+
     return (
-      <Fragment>
-        <Text textContent={this.props.location.pathname} fontSize="25" isBold />
-        {
-          (mode === "LIST") ? (
-            <HomeListAnnounces/>
-          ) : (null)
-        }
-        {
-          (mode === "OFFER") ? (
-            <HomeOffer/>
-          ) : (null)
-        }
-        {
-          (mode === "PARCOURS") ? (
-            <HomeParcours/>
-          ) : (null)
-        }
-        {
-          (mode === "SINGLE") ? (
-            <HomeSingleAnnounce/>
-          ) : (null)
-        }
-        {
-          (mode === "VISIT") ? (
-            <HomeVisit/>
-          ) : (null)
-        }
-      </Fragment>
-    );
+      <div>{title}</div>
+    )
   }
 }
 
 //------------------------------------------------------------------------------------------------------------------
+// Composant lié à Redux
 //------------------------------------------------------------------------------------------------------------------
 
 const mapDispatchToProps = dispatch => {
