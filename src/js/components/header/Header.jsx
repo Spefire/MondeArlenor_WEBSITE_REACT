@@ -11,13 +11,22 @@ import "./Header.scss";
 //------------------------------------------------------------------------------------------------------------------
 
 class Header extends Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      title: "Header"
-    }
+      title: "Header",
+      listDisplayed: false
+    };
+  }
+
+  //------------------------------------------------------------------------------------------------------------------
+  // Fonctions diverses
+  //------------------------------------------------------------------------------------------------------------------
+
+  toggleList() {
+    const { listDisplayed } = this.state;
+    this.setState({ listDisplayed: !listDisplayed });
   }
 
   //------------------------------------------------------------------------------------------------------------------
@@ -25,11 +34,44 @@ class Header extends Component {
   //------------------------------------------------------------------------------------------------------------------
 
   render() {
-    const { currentLocation } = this.props;
-    const { title } = this.state;
+    const { listDisplayed } = this.state;
 
     return (
-      <header>{title} : {currentLocation}</header>
+      <header>
+        <div className="header-section">
+          <div className="header-main">
+            <a className="header-logo-big" href="/">
+              LOGO
+            </a>
+            <a href="/">PAGE.SERVICES</a>
+          </div>
+          <nav>
+            <a href="/services">PAGE.SERVICES</a>
+            <a href="/experiences">PAGE.EXPERIENCES</a>
+            <a href="/contact">PAGE.CONTACT</a>
+          </nav>
+        </div>
+
+        <div className="header-mobile-section">
+          <div className="header-main">
+            <a className="header-logo" href="/">
+              LOGO
+            </a>
+            <a className="header-list" href="/" onClick={() => this.toggleList()}>
+              LIST
+            </a>
+          </div>
+        </div>
+        {listDisplayed ? (
+          <div className="header-mobile-subsection">
+            <nav>
+              <a href="/services">PAGE.SERVICES</a>
+              <a href="/experiences">PAGE.EXPERIENCES</a>
+              <a href="/contact">PAGE.CONTACT</a>
+            </nav>
+          </div>
+        ) : null}
+      </header>
     );
   }
 }
@@ -44,7 +86,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  null
-)(Header);
+export default connect(mapStateToProps, null)(Header);

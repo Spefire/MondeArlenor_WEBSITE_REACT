@@ -1,1 +1,170 @@
 @import "../../../styles/variables.scss";
+
+header {
+  .header-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    height: 50px;
+    background-color: $dark-color;
+    box-shadow: 0px 5px 5px rgba($dark-color, 0.5);
+
+    @media screen and (max-width: $mobile-max-screen) {
+      display: none;
+    }
+
+    a {
+      display: inline-block;
+      position: relative;
+      height: 70px;
+      line-height: 70px;
+      padding: 0 15px;
+      transition: 0.5s;
+    }
+
+    .header-main {
+      display: flex;
+      align-items: center;
+
+      .header-logo-big {
+        height: 50px;
+        width: 170px;
+        padding: 0;
+        margin: 5px 15px;
+        cursor: pointer;
+        background-size: cover;
+        background-image: url("/assets/images/logo.png");
+      }
+
+      .header-flag {
+        height: 60px;
+        width: 60px;
+        padding: 0;
+        margin: 5px 15px;
+        cursor: pointer;
+        background-size: cover;
+
+        &.french {
+          background-image: url("/assets/images/flag_french.png");
+        }
+
+        &.english {
+          background-image: url("/assets/images/flag_english.png");
+        }
+
+        &.spanish {
+          background-image: url("/assets/images/flag_spanish.png");
+        }
+      }
+    }
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  .header-mobile-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    height: 51px;
+    background-color: $dark-primary-color;
+    box-shadow: 0px 5px 5px rgba($dark-primary-color, 0.5);
+
+    @media screen and (min-width: 1000px) {
+      display: none;
+    }
+
+    a {
+      height: 50px;
+      line-height: 50px;
+      padding: 0 15px;
+    }
+
+    .header-main {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      .header-logo {
+        height: 46px;
+        width: 46px;
+        padding: 0;
+        margin: 2px;
+        background-size: cover;
+        background-image: url("/assets/images/icon_logo.png");
+      }
+
+      .header-list {
+        height: 46px;
+        width: 46px;
+        padding: 0;
+        margin: 2px;
+        background-size: cover;
+        background-image: url("/assets/images/icon_list.png");
+
+        &:hover {
+          background-image: url("/assets/images/icon_list_hover.png");
+        }
+      }
+    }
+  }
+
+  .header-mobile-subsection {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    background-color: $dark-primary-color;
+
+    @media screen and (min-width: 1000px) {
+      display: none;
+    }
+
+    a {
+      display: inline-block;
+      position: relative;
+      height: 40px;
+      line-height: 40px;
+      padding: 0 20px;
+    }
+
+    nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-top: 2px solid $light-primary-color;
+    }
+
+    .header-main {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      border-top: 2px solid $light-primary-color;
+      box-shadow: 0px 5px 5px rgba($dark-primary-color, 0.5);
+
+      .header-flag {
+        height: 40px;
+        width: 40px;
+        padding: 0;
+        margin: 5px 15px;
+        cursor: pointer;
+        background-size: cover;
+
+        &.french {
+          background-image: url("/assets/images/flag_french.png");
+        }
+
+        &.english {
+          background-image: url("/assets/images/flag_english.png");
+        }
+
+        &.spanish {
+          background-image: url("/assets/images/flag_spanish.png");
+        }
+      }
+    }
+  }
+}

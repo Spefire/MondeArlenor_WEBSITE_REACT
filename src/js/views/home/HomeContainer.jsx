@@ -13,12 +13,11 @@ import "./HomeContainer.scss";
 //------------------------------------------------------------------------------------------------------------------
 
 class HomeContainer extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       title: "Le Monde d'Arlénor"
-    }
+    };
 
     var currentLocation = this.props.location.pathname;
     this.props.changeLocation(currentLocation);
@@ -31,9 +30,7 @@ class HomeContainer extends Component {
   render() {
     const { title } = this.state;
 
-    return (
-      <div>{title}</div>
-    )
+    return <div>{title}</div>;
   }
 }
 
@@ -47,7 +44,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(HomeContainer);
+export default connect(null, mapDispatchToProps)(HomeContainer);

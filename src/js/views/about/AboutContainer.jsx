@@ -13,12 +13,11 @@ import "./AboutContainer.scss";
 //------------------------------------------------------------------------------------------------------------------
 
 class AboutContainer extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       title: "A Propos"
-    }
+    };
 
     var currentLocation = this.props.location.pathname;
     this.props.changeLocation(currentLocation);
@@ -31,9 +30,7 @@ class AboutContainer extends Component {
   render() {
     const { title } = this.state;
 
-    return (
-      <div>{title}</div>
-    )
+    return <div>{title}</div>;
   }
 }
 
@@ -47,7 +44,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(AboutContainer);
+export default connect(null, mapDispatchToProps)(AboutContainer);

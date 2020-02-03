@@ -13,12 +13,11 @@ import "./ReligionContainer.scss";
 //------------------------------------------------------------------------------------------------------------------
 
 class ReligionContainer extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       title: "La Religion"
-    }
+    };
 
     var currentLocation = this.props.location.pathname;
     this.props.changeLocation(currentLocation);
@@ -31,9 +30,7 @@ class ReligionContainer extends Component {
   render() {
     const { title } = this.state;
 
-    return (
-      <div>{title}</div>
-    )
+    return <div>{title}</div>;
   }
 }
 
@@ -47,7 +44,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(ReligionContainer);
+export default connect(null, mapDispatchToProps)(ReligionContainer);

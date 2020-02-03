@@ -4,7 +4,7 @@ import { Switch, Route, withRouter } from "react-router-dom";
 
 //Import des composants
 import Header from "./components/header/Header.jsx";
-import Footer from './components/footer/Footer';
+import Footer from "./components/footer/Footer";
 
 import HomeContainer from "./views/home/HomeContainer.jsx";
 import UniverseContainer from "./views/universe/UniverseContainer.jsx";
@@ -19,7 +19,6 @@ import LegacyContainer from "./views/legacy/LegacyContainer.jsx";
 //------------------------------------------------------------------------------------------------------------------
 
 class App extends Component {
-
   //------------------------------------------------------------------------------------------------------------------
   // Rendu principal, appelé en premier
   //------------------------------------------------------------------------------------------------------------------
@@ -27,7 +26,7 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <Header/>
+        <Header />
         <main>
           <Switch>
             <Route exact path="/" component={HomeContainer} />
@@ -43,7 +42,7 @@ class App extends Component {
             <Route component={HomeContainer} />
           </Switch>
         </main>
-        <Footer/>
+        <Footer />
       </Fragment>
     );
   }
